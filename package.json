@@ -1,0 +1,55 @@
+{
+  "name": "marginalia",
+  "version": "1.0.0",
+  "description": "Marginalia Chrome Extension",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build-mock": "USE_MOCK=true webpack --mode production",
+    "watch": "webpack --mode development --watch",
+    "fmt": "prettier --write \"src/**/*.{ts,js,json}\"",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/chrome": "^0.0.260",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.39.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^17.3.0",
+    "prettier": "^3.7.4",
+    "sass": "^1.97.2",
+    "sass-loader": "^16.0.6",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.4.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0",
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "author": {
+    "name": "Fabio Mereu",
+    "email": "fabio@mereu.info"
+  },
+  "homepage": "https://github.com/medenagan/marginalia",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medenagan/marginalia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/medenagan/marginalia/issues"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.7",
+    "@mui/material": "^7.3.7",
+    "@types/dompurify": "^3.0.5",
+    "dompurify": "^3.3.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}
