@@ -7,93 +7,62 @@ import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip';
-import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
-import { useNotesStore } from '../state/notesStore';
 import { RichTextToolbar } from './RichTextToolbar';
 import { getRelativeTime } from '../utils/time';
+import { Note } from '../types/note';
+
+interface NoteEditorProps {
+  note: Note;
+  onUpdate: (updates: Partial<Note>) => void;
+  onDelete: () => void;
+}
 
 /**
- * Component for editing a selected note.
- * Handles title and HTML content updates, as well as deletion.
+ * Editor component for a single note.
+ * Handles content and title updates.
  */
-export const NoteEditor: React.FC = () => {
-  const store = useNotesStore();
-  const selectedNoteId = store.getSelectedNoteId();
-  const note = store.getNote(selectedNoteId || '');
+export const NoteEditor: React.FC<NoteEditorProps> = ({
+  note,
+  onUpdate,
+  onDelete,
+}) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [localTitle, setLocalTitle] = useState(note?.title || '');
+  const [previousNoteId, setPreviousNoteId] = useState(note.id);
 
-  // Initialize HTML content on mount or when note changes
+  const hasNoteChanged = note.id !== previousNoteId;
+
   useEffect(() => {
-    if (note && contentRef.current) {
+    if (hasNoteChanged && contentRef.current) {
       contentRef.current.innerHTML = note.html;
     }
-  }, [note?.id]); // Re-run when note ID changes
+  }, [hasNoteChanged, note.html]);
 
-  // Sync local title state when note changes via other means (or switch)
-  useEffect(() => {
-      if (note) {
-          setLocalTitle(note.title);
-      }
-  }, [note?.id, note?.title]);
-
+  // Sync local title
+  if (hasNoteChanged) {
+     setPreviousNoteId(note.id);
+     setLocalTitle(note.title);
+  }
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTitle = e.target.value;
     setLocalTitle(newTitle);
-    if (note) {
-      store.updateNote(note.id, { title: newTitle });
-    }
+    onUpdate({ title: newTitle });
   };
 
   const handleContentInput = () => {
-    if (contentRef.current && note) {
+    if (contentRef.current) {
       const html = contentRef.current.innerHTML;
-      store.updateNote(note.id, { html });
-    }
-  };
-
-  const handleDelete = () => {
-    if (note) {
-      store.deleteNote(note.id);
+      onUpdate({ html });
     }
   };
 
   const handleCopy = () => {
-    if (note && contentRef.current) {
+    if (contentRef.current) {
       const text = `${note.title}\n\n${contentRef.current.innerText}`;
       navigator.clipboard.writeText(text);
     }
   };
-
-  if (!note) {
-    return (
-      <Box
-        sx={{
-          flexGrow: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          p: 3,
-          color: 'text.secondary',
-          textAlign: 'center',
-        }}
-      >
-        <Typography variant="body1" gutterBottom>
-          No note selected.
-        </Typography>
-        <Button
-           variant="text"
-           startIcon={<AddIcon />}
-           onClick={() => store.createNote(store.getCurrentScope())}
-        >
-          Create one
-        </Button>
-      </Box>
-    );
-  }
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', p: 2, overflow: 'hidden' }}>
@@ -117,7 +86,7 @@ export const NoteEditor: React.FC = () => {
             </IconButton>
           </Tooltip>
           <Tooltip title="Delete note">
-            <IconButton size="small" onClick={handleDelete} color="error">
+            <IconButton size="small" onClick={onDelete} color="error">
               <DeleteIcon fontSize="small" />
             </IconButton>
           </Tooltip>

@@ -88,6 +88,7 @@ const initializeChromeMock = () => {
       return Promise.resolve(tab);
     },
     onActivated: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       items: [] as any[],
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       addListener: (callback: any) => {
@@ -103,6 +104,7 @@ const initializeChromeMock = () => {
       },
     },
     onUpdated: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       items: [] as any[],
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       addListener: (callback: any) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,15 +14,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import DescriptionIcon from '@mui/icons-material/Description'; // Placeholder icon
 import { styled, alpha } from '@mui/material/styles';
-import { useNotesStore, Scope } from '../state/notesStore';
+import { Scope, NoteIdentifier } from '../types/note';
 import { useActiveTabContext } from '../hooks/useActiveTab';
+import { useNotes } from '../hooks/useNotes';
 import { NotesList } from './NotesList';
 import { NoteEditor } from './NoteEditor';
+import { resolveBucketLocation } from '../utils/storage';
 
-// Styled Components for Search
-/**
- * Search container component.
- */
+// Styled Components for Search (unchanged)
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -39,9 +38,6 @@ const Search = styled('div')(({ theme }) => ({
   },
 }));
 
-/**
- * Wrapper for the search icon.
- */
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   height: '100%',
@@ -52,9 +48,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-/**
- * Styled input base for search field.
- */
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   width: '100%',
@@ -67,26 +60,44 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 /**
- * Main layout component for the Sidepanel.
+ * Sidepanel layout component.
+ * Manages scope selection, search, and note list display.
  */
 export const NotesLayout: React.FC = () => {
-  const { activeTabContext } = useActiveTabContext();
-  const store = useNotesStore();
-  const currentScope = store.getCurrentScope();
-  const selectedNoteId = store.getSelectedNoteId();
-  const search = store.getSearchQuery();
+  const { activeTab } = useActiveTabContext();
+
+  const [currentScope, setCurrentScope] = useState<Scope>(Scope.Page);
+  const [selectedNoteId, setSelectedNoteId] = useState<NoteIdentifier | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const location = resolveBucketLocation(currentScope === Scope.Global ? '*' : activeTab?.url ?? '');
+
+  const { notes, createNote, updateNote, deleteNote } = useNotes(location);
 
   const handleScopeChange = (event: React.SyntheticEvent, newValue: Scope) => {
-    store.setScope(newValue);
+    setCurrentScope(newValue);
+    setSelectedNoteId(null);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    store.setSearchQuery(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
-  const handleNewNote = () => {
-    store.createNote(currentScope);
+  const handleNewNote = async () => {
+    const newNote = await createNote();
+    setSelectedNoteId(newNote.id);
   };
+
+  const filteredNotes = notes.filter((n) => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      n.title.toLowerCase().includes(q) ||
+      n.html.toLowerCase().includes(q)
+    );
+  }).sort((a, b) => b.updatedAt - a.updatedAt);
+
+  const selectedNote = notes.find(n => n.id === selectedNoteId);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', bgcolor: 'background.default' }}>
@@ -106,7 +117,7 @@ export const NotesLayout: React.FC = () => {
             <StyledInputBase
               placeholder="Search..."
               inputProps={{ 'aria-label': 'search' }}
-              value={search}
+              value={searchQuery}
               onChange={handleSearchChange}
             />
           </Search>
@@ -139,24 +150,34 @@ export const NotesLayout: React.FC = () => {
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography variant="body2" sx={{ fontWeight: 'bold' }}>Page</Typography>
                 <Typography variant="caption" sx={{ fontSize: '0.7rem', opacity: 0.7, maxWidth: '80px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {activeTabContext?.title || 'Current'}
+                  {activeTab?.title || 'Current'}
                 </Typography>
               </Box>
             }
-            value="page"
+            value={Scope.Page}
           />
           <Tab
             label={
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography variant="body2" sx={{ fontWeight: 'bold' }}>Site</Typography>
                 <Typography variant="caption" sx={{ fontSize: '0.7rem', opacity: 0.7, maxWidth: '80px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {activeTabContext?.url ? new URL(activeTabContext.url).hostname : 'Domain'}
+                  {activeTab?.url ? new URL(activeTab.url).hostname : 'Domain'}
                 </Typography>
               </Box>
             }
-            value="site"
+            value={Scope.Domain}
           />
-          <Tab label="Global" value="global" />
+          <Tab
+            label={
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Typography variant="body2" sx={{ fontWeight: 'bold' }}>Global</Typography>
+                <Typography variant="caption" sx={{ fontSize: '0.7rem', opacity: 0.7, maxWidth: '80px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  All Sites
+                </Typography>
+              </Box>
+            }
+            value={Scope.Global}
+          />
         </Tabs>
       </Paper>
 
@@ -169,7 +190,14 @@ export const NotesLayout: React.FC = () => {
             display: { xs: selectedNoteId ? 'none' : 'block', sm: 'block' }
           }}
         >
-          <NotesList />
+          <NotesList
+            notes={filteredNotes}
+            selectedNoteId={selectedNoteId}
+            onSelectNote={setSelectedNoteId}
+            onDeleteNote={(id) => deleteNote(id)}
+            onCreateNote={handleNewNote}
+            currentScope={currentScope}
+          />
         </Box>
 
         <Box
@@ -180,7 +208,21 @@ export const NotesLayout: React.FC = () => {
             overflow: 'hidden'
           }}
         >
-          <NoteEditor key={selectedNoteId || 'empty'} />
+          {selectedNote ? (
+             <NoteEditor
+                key={selectedNote.id}
+                note={selectedNote}
+                onUpdate={(updates) => updateNote(selectedNote.id, updates)}
+                onDelete={() => {
+                    deleteNote(selectedNote.id);
+                    setSelectedNoteId(null);
+                }}
+             />
+          ) : (
+             <Box sx={{ p: 3, textAlign: 'center', color: 'text.secondary', mt: 5 }}>
+                <Typography>Select a note to view</Typography>
+             </Box>
+          )}
         </Box>
       </Box>
 

@@ -16,10 +16,10 @@ export const getPageKey = (): string => {
 
 /**
  * Gets the unique key for the site scope.
- * @returns {string} The hostname of the site.
+ * @returns {string} The domain of the site.
  */
 export const getSiteKey = (): string => {
-  return MOCK_URL.hostname;
+  return MOCK_URL.hostname; // This returns the domain
 };
 
 /**

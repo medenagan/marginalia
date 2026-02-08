@@ -4,7 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
  * Interface defining the shape of the ActiveTabContext.
  */
 export interface ActiveTabContextType {
-  activeTabContext: chrome.tabs.Tab | null;
+  activeTab: chrome.tabs.Tab | null;
 }
 
 /**
@@ -17,13 +17,13 @@ export const ActiveTabContext = createContext<ActiveTabContextType | undefined>(
  * Listens for tab activation and updates.
  */
 export const ActiveTabProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [activeTabContext, setActiveTabContext] = useState<chrome.tabs.Tab | null>(null);
+  const [activeTab, setActiveTab] = useState<chrome.tabs.Tab | null>(null);
 
   useEffect(() => {
     const fetchActiveTab = async () => {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       if (tab) {
-        setActiveTabContext(tab);
+          setActiveTab(tab);
       }
     };
 
@@ -31,13 +31,13 @@ export const ActiveTabProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
     const handleActivated = (activeInfo: chrome.tabs.TabActiveInfo) => {
       chrome.tabs.get(activeInfo.tabId, (tab) => {
-        setActiveTabContext(tab);
+        setActiveTab(tab);
       });
     };
 
     const handleUpdated = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => {
-      if (activeTabContext && tabId === activeTabContext.id) {
-        setActiveTabContext(tab);
+      if (tab.active) {
+        setActiveTab(currentActiveTab => currentActiveTab && tabId === currentActiveTab.id ? tab : currentActiveTab);
       }
     };
 
@@ -51,7 +51,7 @@ export const ActiveTabProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }, []);
 
   return (
-    <ActiveTabContext.Provider value={{ activeTabContext }}>
+    <ActiveTabContext.Provider value={{ activeTab }}>
       {children}
     </ActiveTabContext.Provider>
   );

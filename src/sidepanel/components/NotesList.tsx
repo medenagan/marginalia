@@ -10,36 +10,38 @@ import Chip from '@mui/material/Chip';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
-import { useNotesStore } from '../state/notesStore';
 import { getRelativeTime } from '../utils/time';
+import { NoteIdentifier, Scope, Note } from '../types/note';
 
-const scopeLabels: Record<string, string> = {
-  page: 'This page',
-  site: 'This site',
-  global: 'All sites',
+const scopeLabels: Record<Scope, string> = {
+  [Scope.Page]: 'This page',
+  [Scope.Domain]: 'This site',
+  [Scope.Global]: 'All sites',
 };
+
+interface NotesListProps {
+  notes: Note[];
+  selectedNoteId: NoteIdentifier | null;
+  onSelectNote: (id: NoteIdentifier) => void;
+  onDeleteNote: (id: NoteIdentifier) => void;
+  onCreateNote: () => void;
+  currentScope: Scope;
+}
 
 /**
  * Component that displays a scrollable list of notes for the current scope.
  */
-export const NotesList: React.FC = () => {
-  const store = useNotesStore();
-  const currentScope = store.getCurrentScope();
-  const searchQuery = store.getSearchQuery();
-  const notes = store.getNotes(currentScope, searchQuery);
-  const selectedNoteId = store.getSelectedNoteId();
-
-  const handleDelete = (e: React.MouseEvent, id: string) => {
+export const NotesList: React.FC<NotesListProps> = ({
+  notes,
+  selectedNoteId,
+  onSelectNote,
+  onDeleteNote,
+  onCreateNote,
+  currentScope
+}) => {
+  const handleDelete = (e: React.MouseEvent, id: NoteIdentifier) => {
     e.stopPropagation();
-    store.deleteNote(id);
-  };
-
-  const handleSelect = (id: string) => {
-    store.selectNote(id);
-  };
-
-  const handleAdd = () => {
-    store.createNote(currentScope);
+    onDeleteNote(id);
   };
 
   return (
@@ -86,7 +88,7 @@ export const NotesList: React.FC = () => {
             <ListItemButton
               key={note.id}
               selected={selectedNoteId === note.id}
-              onClick={() => handleSelect(note.id)}
+              onClick={() => onSelectNote(note.id)}
               divider
               sx={{
                 flexDirection: 'column',
@@ -136,7 +138,7 @@ export const NotesList: React.FC = () => {
           fullWidth
           variant="outlined"
           startIcon={<AddIcon />}
-          onClick={handleAdd}
+          onClick={onCreateNote}
         >
           Add note
         </Button>
