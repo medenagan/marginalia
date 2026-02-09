@@ -10,8 +10,8 @@ import Chip from '@mui/material/Chip';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
-import { getRelativeTime } from '../utils/time';
-import { NoteIdentifier, Scope, Note } from '../types/note';
+import { getRelativeTime } from '../../utils/time';
+import { NoteIdentifier, Scope, Note } from '../../types/note';
 
 const scopeLabels: Record<Scope, string> = {
   [Scope.Page]: 'This page',

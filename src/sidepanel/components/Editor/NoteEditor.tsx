@@ -1,15 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import DeleteIcon from '@mui/icons-material/Delete';
+
 import Tooltip from '@mui/material/Tooltip';
+import { NoteHeader } from './NoteHeader';
 import { RichTextToolbar } from './RichTextToolbar';
-import { getRelativeTime } from '../utils/time';
-import { Note } from '../types/note';
+import { getRelativeTime } from '../../utils/time';
+import { Note } from '../../types/note';
 
 interface NoteEditorProps {
   note: Note;
@@ -67,31 +65,13 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', p: 2, overflow: 'hidden' }}>
       {/* Header: Title + Actions */}
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
-        <TextField
-          value={localTitle}
-          onChange={handleTitleChange}
-          placeholder="Untitled note"
-          variant="standard"
-          fullWidth
-          InputProps={{
-            style: { fontSize: '1.2rem', fontWeight: 600 },
-            disableUnderline: true,
-          }}
-        />
-        <Box sx={{ display: 'flex', ml: 1 }}>
-          <Tooltip title="Copy to clipboard">
-            <IconButton size="small" onClick={handleCopy}>
-              <ContentCopyIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Delete note">
-            <IconButton size="small" onClick={onDelete} color="error">
-              <DeleteIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        </Box>
-      </Box>
+      {/* Header: Title + Actions */}
+      <NoteHeader
+        title={localTitle}
+        onTitleChange={handleTitleChange}
+        onCopy={handleCopy}
+        onDelete={onDelete}
+      />
 
       {/* Toolbar */}
       <Box sx={{ mb: 1 }}>
@@ -139,7 +119,10 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
         }}
       >
         <Typography variant="caption" color="text.secondary">
-          Saved locally • {getRelativeTime(note.updatedAt)}
+          Saved locally •{' '}
+          <Tooltip title={`Last modified: ${new Date(note.updatedAt).toLocaleString('locale', { dateStyle: 'medium', timeStyle: 'short' })}`}>
+            <span>{getRelativeTime(note.updatedAt)}</span>
+          </Tooltip>
         </Typography>
       </Box>
     </Box>

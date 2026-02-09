@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { theme } from './theme';
-import { NotesLayout } from './components/NotesLayout';
+import { NotesLayout } from './components/Layout/NotesLayout';
 
 /**
  * Root component of the Sidepanel application.
