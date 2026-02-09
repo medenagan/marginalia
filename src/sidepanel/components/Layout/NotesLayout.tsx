@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -25,7 +25,7 @@ export const NotesLayout: React.FC = () => {
   const [selectedNoteId, setSelectedNoteId] = useState<NoteIdentifier | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const location = resolveBucketLocation(currentScope === Scope.Global ? '*' : activeTab?.url ?? '');
+  const location = useMemo(() => resolveBucketLocation(currentScope === Scope.Global ? '*' : activeTab?.url ?? ''), [currentScope, activeTab?.url]);
 
   const { notes, createNote, updateNote, deleteNote } = useNotes(location);
 
