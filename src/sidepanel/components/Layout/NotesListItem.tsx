@@ -3,8 +3,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+import PublicIcon from '@mui/icons-material/Public';
+import Avatar from '@mui/material/Avatar';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Tooltip from '@mui/material/Tooltip';
 import { Note, NoteIdentifier } from '../../types/note';
+import { MessageType } from '../../../types/messages';
 import { getRelativeTime } from '../../utils/time';
 
 interface NotesListItemProps {
@@ -25,18 +30,41 @@ export const NotesListItem: React.FC<NotesListItemProps> = ({
     onDelete(note.id);
   };
 
+  const handleIconClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (note.url) {
+      chrome.runtime.sendMessage({ type: MessageType.OPEN_URL, url: note.url });
+    }
+  };
+
   return (
     <ListItemButton
       selected={selected}
       onClick={() => onSelect(note.id)}
       divider
       sx={{
-        flexDirection: 'column',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         position: 'relative',
         pr: 5, // Make room for delete button
       }}
     >
+      <ListItemAvatar>
+        <Tooltip title={`Visit ${note.url || '#'}`}>
+          <IconButton onClick={handleIconClick} size="small" sx={{ mr: 1 }}>
+            <Avatar
+              src={note.icon || undefined}
+              sx={{
+                width: 24,
+                height: 24,
+                bgcolor: note.icon ? 'transparent' : 'primary.main',
+              }}
+              variant="rounded"
+            >
+              <PublicIcon fontSize="small" />
+            </Avatar>
+          </IconButton>
+        </Tooltip>
+      </ListItemAvatar>
       <ListItemText
         primary={note.title || 'Untitled'}
         primaryTypographyProps={{
