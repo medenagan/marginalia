@@ -16,6 +16,7 @@ export interface Note {
   id: NoteIdentifier;
   title: string;
   content: string;
+  createdAt: number;
   updatedAt: number;
   url: string;
   icon: string | null;

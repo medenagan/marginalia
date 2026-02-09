@@ -4,8 +4,19 @@
  */
 import { MessageType, isAppMessage } from '../types/messages';
 
+import { storeMockNotes } from '../mock/notes';
+
+const generateMockNotes = async () => {
+  const { mock_notes_generated } = await chrome.storage.local.get('mock_notes_generated');
+  if (!mock_notes_generated) {
+    await storeMockNotes(1000);
+    await chrome.storage.local.set({ mock_notes_generated: true });
+  }
+};
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+  void generateMockNotes();
 });
 
 /**

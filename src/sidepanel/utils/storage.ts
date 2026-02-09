@@ -61,13 +61,15 @@ export const getBucket = async (location: BucketLocation): Promise<NotesBucket> 
  * @returns {Promise<Note>} A promise resolving to the created note.
  */
 export const createNote = async (
-  noteData: Omit<Note, 'id' | 'updatedAt'>,
+  noteData: Omit<Note, 'id' | 'updatedAt' | 'createdAt'>,
   location: BucketLocation,
 ): Promise<Note> => {
+  const createdAt = Date.now();
   const newNote: Note = {
     ...noteData,
     id: crypto.randomUUID(),
-    updatedAt: Date.now(),
+    createdAt,
+    updatedAt: createdAt,
   };
 
   const key = resolveKeyFromLocation(location);
