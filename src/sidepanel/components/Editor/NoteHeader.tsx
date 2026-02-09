@@ -9,6 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import PublicIcon from '@mui/icons-material/Public';
 import { Note } from '../../types/note';
 import { MessageType } from '../../../types/messages';
+import { getNoteDisplayTitle } from '../../utils/title';
 interface NoteHeaderProps {
   note: Note;
   title: string;
@@ -50,7 +51,7 @@ export const NoteHeader: React.FC<NoteHeaderProps> = ({
       <TextField
         value={title}
         onChange={onTitleChange}
-        placeholder="Untitled note"
+        placeholder={getNoteDisplayTitle(note)}
         variant="standard"
         fullWidth
         InputProps={{

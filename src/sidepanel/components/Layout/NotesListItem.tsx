@@ -11,6 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { Note, NoteIdentifier } from '../../types/note';
 import { MessageType } from '../../../types/messages';
 import { getRelativeTime } from '../../utils/time';
+import { getNoteDisplayTitle } from '../../utils/title';
 
 interface NotesListItemProps {
   note: Note;
@@ -66,7 +67,7 @@ export const NotesListItem: React.FC<NotesListItemProps> = ({
         </Tooltip>
       </ListItemAvatar>
       <ListItemText
-        primary={note.title || 'Untitled'}
+        primary={getNoteDisplayTitle(note)}
         primaryTypographyProps={{
           variant: 'body2',
           fontWeight: 600,
