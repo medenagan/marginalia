@@ -38,6 +38,7 @@ export const NoteHeader: React.FC<NoteHeaderProps> = ({
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLocalTitle(note.title);
   }, [note.title]);
 

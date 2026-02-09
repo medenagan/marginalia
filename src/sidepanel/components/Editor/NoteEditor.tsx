@@ -29,12 +29,13 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
 
   useEffect(() => {
     if (previousNoteId !== note.id) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPreviousNoteId(note.id);
       if (contentRef.current) {
         contentRef.current.innerHTML = note.content;
       }
     }
-  }, [previousNoteId, note.id]);
+  }, [previousNoteId, note.id, note.content]);
 
   const handleTitleChange = (title: string) => {
     onUpdate({ title });
