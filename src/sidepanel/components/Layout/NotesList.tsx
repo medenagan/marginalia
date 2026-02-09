@@ -1,16 +1,12 @@
 import React from 'react';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { NotesListItem } from './NotesListItem';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import Tooltip from '@mui/material/Tooltip';
+
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
-import { getRelativeTime } from '../../utils/time';
 import { NoteIdentifier, Scope, Note } from '../../types/note';
 
 const scopeLabels: Record<Scope, string> = {
@@ -39,10 +35,7 @@ export const NotesList: React.FC<NotesListProps> = ({
   onCreateNote,
   currentScope
 }) => {
-  const handleDelete = (e: React.MouseEvent, id: NoteIdentifier) => {
-    e.stopPropagation();
-    onDeleteNote(id);
-  };
+
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -85,49 +78,13 @@ export const NotesList: React.FC<NotesListProps> = ({
           </Box>
         ) : (
           notes.map((note) => (
-            <ListItemButton
+            <NotesListItem
               key={note.id}
+              note={note}
               selected={selectedNoteId === note.id}
-              onClick={() => onSelectNote(note.id)}
-              divider
-              sx={{
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                position: 'relative',
-                pr: 5, // Make room for delete button
-              }}
-            >
-              <ListItemText
-                primary={note.title || 'Untitled'}
-                primaryTypographyProps={{
-                  variant: 'body2',
-                  fontWeight: 600,
-                  noWrap: true,
-                }}
-                secondary={getRelativeTime(note.updatedAt)}
-                secondaryTypographyProps={{
-                  variant: 'caption',
-                  noWrap: true,
-                }}
-                sx={{ width: '100%', m: 0 }}
-              />
-              <Tooltip title="Delete">
-                <IconButton
-                  size="small"
-                  onClick={(e) => handleDelete(e, note.id)}
-                  sx={{
-                    position: 'absolute',
-                    right: 4,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    opacity: 0.6,
-                    '&:hover': { opacity: 1, color: 'error.main' },
-                  }}
-                >
-                  <DeleteIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            </ListItemButton>
+              onSelect={onSelectNote}
+              onDelete={onDeleteNote}
+            />
           ))
         )}
       </List>
