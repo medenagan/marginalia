@@ -25,6 +25,7 @@ export const NotesLayout: React.FC = () => {
   const [selectedNoteId, setSelectedNoteId] = useState<NoteIdentifier | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
+
   const location = useMemo(() => resolveBucketLocation(currentScope === Scope.Global ? '*' : activeTab?.url ?? ''), [currentScope, activeTab?.url]);
 
   const { notes, createNote, updateNote, deleteNote } = useNotes(location);
@@ -65,7 +66,6 @@ export const NotesLayout: React.FC = () => {
       <NotesScopeTabs
         currentScope={currentScope}
         onScopeChange={handleScopeChange}
-        activeTab={activeTab}
       />
 
       <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>

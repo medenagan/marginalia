@@ -2,10 +2,10 @@ import { Note } from '../types/note';
 
 const TEMPLATES = {
   TODAY: "Today's note at {time}",
-  YESTERDAY: "Yesterday Note",
-  LAST_WEEK: "{dayName} Note",
-  OLDER: "Note {month} {day}",
-  OLDER_WITH_YEAR: "Note {month} {day} {year}",
+  YESTERDAY: 'Yesterday Note',
+  LAST_WEEK: '{dayName} Note',
+  OLDER: 'Note {month} {day}',
+  OLDER_WITH_YEAR: 'Note {month} {day} {year}',
 };
 
 /**

@@ -25,27 +25,19 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
   onDelete,
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
-  const [localTitle, setLocalTitle] = useState(note?.title || '');
-  const [previousNoteId, setPreviousNoteId] = useState(note.id);
-
-  const hasNoteChanged = note.id !== previousNoteId;
+  const [previousNoteId, setPreviousNoteId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (hasNoteChanged && contentRef.current) {
-      contentRef.current.innerHTML = note.content;
+    if (previousNoteId !== note.id) {
+      setPreviousNoteId(note.id);
+      if (contentRef.current) {
+        contentRef.current.innerHTML = note.content;
+      }
     }
-  }, [hasNoteChanged, note.content]);
+  }, [previousNoteId, note.id]);
 
-  // Sync local title
-  if (hasNoteChanged) {
-     setPreviousNoteId(note.id);
-     setLocalTitle(note.title);
-  }
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTitle = e.target.value;
-    setLocalTitle(newTitle);
-    onUpdate({ title: newTitle });
+  const handleTitleChange = (title: string) => {
+    onUpdate({ title });
   };
 
   const handleContentInput = () => {
@@ -68,7 +60,6 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
       {/* Header: Title + Actions */}
       <NoteHeader
         note={note}
-        title={localTitle}
         onTitleChange={handleTitleChange}
         onCopy={handleCopy}
         onDelete={onDelete}

@@ -5,18 +5,18 @@ import Tab from '@mui/material/Tab';
 import Paper from '@mui/material/Paper';
 import { Scope } from '../../types/note';
 import { ScopeTabLabel } from './ScopeTabLabel';
+import { useActiveTabContext } from '../../hooks/useActiveTab';
 
 interface NotesScopeTabsProps {
   currentScope: Scope;
   onScopeChange: (event: React.SyntheticEvent, newValue: Scope) => void;
-  activeTab: chrome.tabs.Tab | null;
 }
 
 export const NotesScopeTabs: React.FC<NotesScopeTabsProps> = ({
   currentScope,
   onScopeChange,
-  activeTab,
 }) => {
+  const { activeTab } = useActiveTabContext();
   return (
     <Paper square elevation={1}>
       <Tabs

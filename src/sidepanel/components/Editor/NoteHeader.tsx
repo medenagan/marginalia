@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
@@ -12,15 +12,13 @@ import { MessageType } from '../../../types/messages';
 import { getNoteDisplayTitle } from '../../utils/title';
 interface NoteHeaderProps {
   note: Note;
-  title: string;
-  onTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onTitleChange: (newTitle: string) => void;
   onCopy: () => void;
   onDelete: () => void;
 }
 
 export const NoteHeader: React.FC<NoteHeaderProps> = ({
   note,
-  title,
   onTitleChange,
   onCopy,
   onDelete,
@@ -30,6 +28,18 @@ export const NoteHeader: React.FC<NoteHeaderProps> = ({
       chrome.runtime.sendMessage({ type: MessageType.OPEN_URL, url: note.url });
     }
   };
+
+  const [localTitle, setLocalTitle] = useState(note.title);
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTitle = e.target.value;
+    setLocalTitle(newTitle);
+    onTitleChange(newTitle);
+  };
+
+  useEffect(() => {
+    setLocalTitle(note.title);
+  }, [note.title]);
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
@@ -49,8 +59,8 @@ export const NoteHeader: React.FC<NoteHeaderProps> = ({
         </IconButton>
       </Tooltip>
       <TextField
-        value={title}
-        onChange={onTitleChange}
+        value={localTitle}
+        onChange={handleTitleChange}
         placeholder={getNoteDisplayTitle(note)}
         variant="standard"
         fullWidth
