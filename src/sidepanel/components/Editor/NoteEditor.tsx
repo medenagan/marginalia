@@ -32,9 +32,9 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
 
   useEffect(() => {
     if (hasNoteChanged && contentRef.current) {
-      contentRef.current.innerHTML = note.html;
+      contentRef.current.innerHTML = note.content;
     }
-  }, [hasNoteChanged, note.html]);
+  }, [hasNoteChanged, note.content]);
 
   // Sync local title
   if (hasNoteChanged) {
@@ -50,8 +50,8 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
 
   const handleContentInput = () => {
     if (contentRef.current) {
-      const html = contentRef.current.innerHTML;
-      onUpdate({ html });
+      const content = contentRef.current.innerHTML;
+      onUpdate({ content });
     }
   };
 

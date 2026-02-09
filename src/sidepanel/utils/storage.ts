@@ -13,12 +13,12 @@ const STORAGE_PREFIX_DOMAIN = 'notes_domain';
 
 /**
  * Generates a BucketLocation from a context URL.
- * @param contextUrl - The URL to derive the location from.
+ * @param href - The URL to derive the location from.
  * @returns {Readonly<BucketLocation>} The resolved location.
  */
-export const resolveBucketLocation = (contextUrl: string): Readonly<BucketLocation> => {
+export const resolveBucketLocation = (href: string): Readonly<BucketLocation> => {
   try {
-    const url = new URL(contextUrl);
+    const url = new URL(href);
     return Object.freeze({
       domain: url.hostname,
       hasHostname: true,

@@ -49,8 +49,9 @@ export const useNotes = (location: BucketLocation): UseNotesResult => {
   const createNote = useCallback(async () => {
     const noteData = {
       title: 'Untitled note',
-      html: DOMPurify.sanitize('<p></p>'),
-      contextUrl: activeTab?.url ?? '',
+      content: DOMPurify.sanitize('<p></p>'),
+      url: activeTab?.url ?? '',
+      icon: activeTab?.favIconUrl ?? null,
     };
     return await storage.createNote(noteData, location);
   }, [location, activeTab]);
@@ -63,7 +64,7 @@ export const useNotes = (location: BucketLocation): UseNotesResult => {
       const updatedNote: Note = {
         ...currentNote,
         ...updates,
-        html: updates.html ? DOMPurify.sanitize(updates.html) : currentNote.html,
+        content: updates.content ? DOMPurify.sanitize(updates.content) : currentNote.content,
         updatedAt: Date.now(),
       };
 

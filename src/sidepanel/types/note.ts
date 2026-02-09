@@ -15,7 +15,8 @@ export type NoteIdentifier = string;
 export interface Note {
   id: NoteIdentifier;
   title: string;
-  html: string;
+  content: string;
   updatedAt: number;
-  contextUrl: string;
+  url: string;
+  icon: string | null;
 }

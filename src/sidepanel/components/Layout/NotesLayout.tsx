@@ -48,7 +48,7 @@ export const NotesLayout: React.FC = () => {
     const q = searchQuery.toLowerCase();
     return (
       n.title.toLowerCase().includes(q) ||
-      n.html.toLowerCase().includes(q)
+      n.content.toLowerCase().includes(q)
     );
   }).sort((a, b) => b.updatedAt - a.updatedAt);
 
