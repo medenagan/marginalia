@@ -24,6 +24,9 @@ export const useNotes = (location: BucketLocation): UseNotesResult => {
   const [isLoading, setIsLoading] = useState(true);
   const { activeTab } = useActiveTabContext();
 
+  const url = activeTab?.url ?? '';
+  const icon = activeTab?.favIconUrl ?? null;
+
   useEffect(() => {
     let isMounted = true;
 
@@ -50,11 +53,11 @@ export const useNotes = (location: BucketLocation): UseNotesResult => {
     const noteData = {
       title: '',
       content: DOMPurify.sanitize('<p></p>'),
-      url: activeTab?.url ?? '',
-      icon: activeTab?.favIconUrl ?? null,
+      url,
+      icon,
     };
     return await storage.createNote(noteData, location);
-  }, [location, activeTab]);
+  }, [location, url, icon]);
 
   const updateNote = useCallback(
     async (id: NoteIdentifier, updates: Partial<Note>) => {

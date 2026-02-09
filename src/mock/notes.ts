@@ -83,10 +83,7 @@ export const storeMockNotes = async (count = 100): Promise<void> => {
     const location = resolveBucketLocation(url);
 
     // Logic to resolve key manually
-    let storageKey = 'notes_generic';
-    if (location.hasHostname && location.domain) {
-      storageKey = `notes_domain:${location.domain}`;
-    }
+    const storageKey = `notes_domain:${location}`;
 
     const createdAt = getRandomDate();
     const note: Note = {

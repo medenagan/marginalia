@@ -44,14 +44,14 @@ export const NotesLayout: React.FC = () => {
     setSelectedNoteId(newNote.id);
   };
 
-  const filteredNotes = notes.filter((n) => {
+  const filteredNotes = useMemo(() => notes.filter((n) => {
     if (!searchQuery.trim()) return true;
     const q = searchQuery.toLowerCase();
     return (
       n.title.toLowerCase().includes(q) ||
       n.content.toLowerCase().includes(q)
     );
-  }).sort((a, b) => b.updatedAt - a.updatedAt);
+  }).sort((a, b) => b.updatedAt - a.updatedAt), [notes, searchQuery]);
 
   const selectedNote = notes.find(n => n.id === selectedNoteId);
 

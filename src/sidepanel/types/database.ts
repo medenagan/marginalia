@@ -5,10 +5,7 @@ import { Note, NoteIdentifier } from './note';
  * @property domain - The domain name if applicable.
  * @property hasHostname - Whether the location is tied to a specific hostname.
  */
-export type BucketLocation =
-  | { domain: string; hasHostname: true }
-  | { domain: null; hasHostname: false };
-
+export type BucketLocation = string & { readonly __brand: unique symbol };
 /**
  * Dictionary of notes keyed by their unique ID.
  * Used for efficient key-value storage within a bucket (domain or global).

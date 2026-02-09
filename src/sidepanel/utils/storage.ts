@@ -1,10 +1,5 @@
-import { NotesBucket, BucketLocation } from '../types/database';
+import { BucketLocation, NotesBucket } from '../types/database';
 import { Note, NoteIdentifier } from '../types/note';
-
-/**
- * Key for generic domain notes bucket.
- */
-const STORAGE_GENERIC_DOMAIN_KEY = 'notes_generic';
 
 /**
  * Key prefix for domain-specific notes buckets.
@@ -16,18 +11,12 @@ const STORAGE_PREFIX_DOMAIN = 'notes_domain';
  * @param href - The URL to derive the location from.
  * @returns {Readonly<BucketLocation>} The resolved location.
  */
-export const resolveBucketLocation = (href: string): Readonly<BucketLocation> => {
+export const resolveBucketLocation = (href: string): BucketLocation => {
   try {
     const url = new URL(href);
-    return Object.freeze({
-      domain: url.hostname,
-      hasHostname: true,
-    });
+    return url.hostname as BucketLocation;
   } catch {
-    return Object.freeze({
-      domain: null,
-      hasHostname: false,
-    });
+    return `*` as BucketLocation;
   }
 };
 
@@ -37,10 +26,7 @@ export const resolveBucketLocation = (href: string): Readonly<BucketLocation> =>
  * @returns {string} The storage key.
  */
 const resolveKeyFromLocation = (location: BucketLocation): string => {
-  if (!location.hasHostname) {
-    return STORAGE_GENERIC_DOMAIN_KEY;
-  }
-  return `${STORAGE_PREFIX_DOMAIN}:${location.domain}`;
+  return `${STORAGE_PREFIX_DOMAIN}:${location}`;
 };
 
 /**
