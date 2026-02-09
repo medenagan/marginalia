@@ -5,8 +5,12 @@ import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip';
-
+import Avatar from '@mui/material/Avatar';
+import PublicIcon from '@mui/icons-material/Public';
+import { Note } from '../../types/note';
+import { MessageType } from '../../../types/messages';
 interface NoteHeaderProps {
+  note: Note;
   title: string;
   onTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onCopy: () => void;
@@ -14,13 +18,35 @@ interface NoteHeaderProps {
 }
 
 export const NoteHeader: React.FC<NoteHeaderProps> = ({
+  note,
   title,
   onTitleChange,
   onCopy,
   onDelete,
 }) => {
+  const handleIconClick = () => {
+    if (note.url) {
+      chrome.runtime.sendMessage({ type: MessageType.OPEN_URL, url: note.url });
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
+      <Tooltip title={`Visit ${note.url || '#'}`}>
+        <IconButton onClick={handleIconClick} size="small" sx={{ mr: 1 }}>
+          <Avatar
+            src={note.icon || undefined}
+            sx={{
+              width: 24,
+              height: 24,
+              bgcolor: note.icon ? 'transparent' : 'primary.main',
+            }}
+            variant="rounded"
+          >
+            <PublicIcon fontSize="small" />
+          </Avatar>
+        </IconButton>
+      </Tooltip>
       <TextField
         value={title}
         onChange={onTitleChange}

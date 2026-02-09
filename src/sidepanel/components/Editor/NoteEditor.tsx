@@ -67,6 +67,7 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
       {/* Header: Title + Actions */}
       {/* Header: Title + Actions */}
       <NoteHeader
+        note={note}
         title={localTitle}
         onTitleChange={handleTitleChange}
         onCopy={handleCopy}
