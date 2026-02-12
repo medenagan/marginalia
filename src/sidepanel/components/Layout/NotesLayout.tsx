@@ -14,6 +14,7 @@ import { NotesList } from './NotesList';
 import { NoteEditor } from '../Editor/NoteEditor';
 import { DeleteConfirmDialog } from './DeleteConfirmDialog';
 import { getNoteDisplayTitle } from '../../utils/title';
+import { normalizeUrl } from '../../utils/urlScope';
 
 
 
@@ -23,6 +24,7 @@ import { getNoteDisplayTitle } from '../../utils/title';
  */
 export const NotesLayout: React.FC = () => {
   const { activeTab } = useActiveTabContext();
+  const contextUrl = activeTab?.url;
 
   const [currentScope, setCurrentScope] = useState<Scope>(Scope.Page);
   const [selectedNoteId, setSelectedNoteId] = useState<NoteIdentifier | null>(null);
@@ -33,7 +35,7 @@ export const NotesLayout: React.FC = () => {
   const isStale = cleanQuery !== deferredQuery;
 
 
-  const location = currentScope === Scope.Global ? undefined : resolveBucketLocation(activeTab?.url ?? '');
+  const location = currentScope === Scope.Global ? undefined : resolveBucketLocation(contextUrl ?? '');
   const { notes, isLoading, createNote, updateNote, deleteNote } = useNotes(location);
 
 
@@ -69,17 +71,26 @@ export const NotesLayout: React.FC = () => {
     setDeletingNoteId(null);
   }, []);
 
-
   const filteredNotes = useMemo(() => {
-    const noteList = Object.values(notes);
-    return noteList.filter((note) => {
-      if (!deferredQuery) return true;
-      return (
+    let result = Object.values(notes);
+
+    // 1. Filter by Scope
+    // Note: 'Site' and 'Global' scopes are handled by useNotes hook via location param
+    if (currentScope === Scope.Page && contextUrl) {
+      const normalizedContextUrl = normalizeUrl(contextUrl);
+      result = result.filter((note) => normalizeUrl(note.url) === normalizedContextUrl);
+    }
+
+    // 2. Filter by Search Query
+    if (deferredQuery) {
+      result = result.filter((note) =>
         note.title.toLowerCase().includes(deferredQuery) ||
         note.content.toLowerCase().includes(deferredQuery)
       );
-    }).sort((a, b) => b.updatedAt - a.updatedAt);
-  }, [notes, deferredQuery]);
+    }
+
+    return result.sort((a, b) => b.updatedAt - a.updatedAt);
+  }, [notes, deferredQuery, currentScope, contextUrl]);
 
   const selectedNote = selectedNoteId ? notes[selectedNoteId] : null;
 

@@ -7,6 +7,37 @@
 const MOCK_URL = new URL('https://example.com/some/article');
 
 /**
+ * Normalizes a URL for comparison by removing query parameters, hash fragments,
+ * and trailing slashes.
+ *
+ * Example:
+ * Input: "https://example.com/page/?ref=123#section"
+ * Output: "https://example.com/page"
+ *
+ * Input: "https://example.com/page/"
+ * Output: "https://example.com/page"
+ *
+ * @param urlStr - The URL string to normalize.
+ * @returns {string} The normalized URL string.
+ */
+export const normalizeUrl = (urlStr: string): string => {
+  try {
+    const url = new URL(urlStr);
+    // Remove trailing slash from pathname if present (and not root)
+    const pathname =
+      url.pathname.endsWith('/') && url.pathname.length > 1
+        ? url.pathname.slice(0, -1)
+        : url.pathname;
+
+    // Return origin + normalized pathname, explicitly excluding search (?) and hash (#)
+    return `${url.origin}${pathname}`;
+  } catch {
+    // If invalid URL, return as is (or handle as needed)
+    return urlStr;
+  }
+};
+
+/**
  * Gets the unique key for the current page scope.
  * @returns {string} The full URL of the page.
  */
