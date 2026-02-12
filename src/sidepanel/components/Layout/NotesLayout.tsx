@@ -12,6 +12,8 @@ import { useActiveTabContext } from '../../hooks/useActiveTab';
 import { useNotes } from '../../hooks/useNotes';
 import { NotesList } from './NotesList';
 import { NoteEditor } from '../Editor/NoteEditor';
+import { DeleteConfirmDialog } from './DeleteConfirmDialog';
+import { getNoteDisplayTitle } from '../../utils/title';
 
 
 
@@ -24,6 +26,7 @@ export const NotesLayout: React.FC = () => {
 
   const [currentScope, setCurrentScope] = useState<Scope>(Scope.Page);
   const [selectedNoteId, setSelectedNoteId] = useState<NoteIdentifier | null>(null);
+  const [deletingNoteId, setDeletingNoteId] = useState<NoteIdentifier | null>(null);
   const [query, setQuery] = useState('');
   const cleanQuery = query.trim().toLowerCase();
   const deferredQuery = useDeferredValue(cleanQuery);
@@ -49,8 +52,22 @@ export const NotesLayout: React.FC = () => {
   }, [createNote]);
 
   const handleDeleteNote = useCallback((id: NoteIdentifier) => {
-    deleteNote(id);
-  }, [deleteNote]);
+    setDeletingNoteId(id);
+  }, []);
+
+  const confirmDelete = useCallback(() => {
+    if (deletingNoteId) {
+      deleteNote(deletingNoteId);
+      if (selectedNoteId === deletingNoteId) {
+        setSelectedNoteId(null);
+      }
+      setDeletingNoteId(null);
+    }
+  }, [deletingNoteId, deleteNote, selectedNoteId]);
+
+  const cancelDelete = useCallback(() => {
+    setDeletingNoteId(null);
+  }, []);
 
 
   const filteredNotes = useMemo(() => {
@@ -116,10 +133,7 @@ export const NotesLayout: React.FC = () => {
                 key={selectedNote.id}
                 note={selectedNote}
                 onUpdate={(updates) => updateNote(selectedNote.id, updates)}
-                onDelete={() => {
-                    deleteNote(selectedNote.id);
-                    setSelectedNoteId(null);
-                }}
+                onDelete={() => handleDeleteNote(selectedNote.id)}
              />
           ) : (
              <Box sx={{ p: 3, textAlign: 'center', color: 'text.secondary', mt: 5 }}>
@@ -138,6 +152,13 @@ export const NotesLayout: React.FC = () => {
           {chrome.runtime?.id === 'mock-extension-id' ? 'v0 mock' : ''}
         </Typography>
       </Box>
+      <DeleteConfirmDialog
+        open={!!deletingNoteId}
+        onClose={cancelDelete}
+        onConfirm={confirmDelete}
+        title="Delete Note"
+        content={`Are you sure you want to delete the note "${deletingNoteId ? getNoteDisplayTitle(notes[deletingNoteId]) : ''}"? This action cannot be undone.`}
+      />
     </Box>
   );
 };
