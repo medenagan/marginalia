@@ -48,6 +48,10 @@ export const NotesLayout: React.FC = () => {
     setQuery(e.target.value);
   };
 
+  const handleClearSearch = () => {
+    setQuery('');
+  };
+
   const handleNewNote = useCallback(async () => {
     const newNote = await createNote();
     setSelectedNoteId(newNote.id);
@@ -99,6 +103,7 @@ export const NotesLayout: React.FC = () => {
       <NotesHeader
         searchQuery={query}
         onSearchChange={handleSearchChange}
+        onClearSearch={handleClearSearch}
         onNewNote={handleNewNote}
       />
 

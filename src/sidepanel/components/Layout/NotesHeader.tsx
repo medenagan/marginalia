@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import DescriptionIcon from '@mui/icons-material/Description';
+import ClearIcon from '@mui/icons-material/Clear';
 import { styled, alpha } from '@mui/material/styles';
 
 // Styled Components for Search
@@ -51,12 +52,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 interface NotesHeaderProps {
   searchQuery: string;
   onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClearSearch: () => void;
   onNewNote: () => void;
 }
 
 export const NotesHeader: React.FC<NotesHeaderProps> = ({
   searchQuery,
   onSearchChange,
+  onClearSearch,
   onNewNote,
 }) => {
   return (
@@ -78,6 +81,24 @@ export const NotesHeader: React.FC<NotesHeaderProps> = ({
             inputProps={{ 'aria-label': 'search' }}
             value={searchQuery}
             onChange={onSearchChange}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                onClearSearch();
+                (e.target as HTMLInputElement).blur();
+              }
+            }}
+            endAdornment={
+              searchQuery ? (
+                <IconButton
+                  size="small"
+                  aria-label="clear search"
+                  onClick={onClearSearch}
+                  sx={{ color: 'inherit', p: 0.5, mr: 0.5 }}
+                >
+                  <ClearIcon fontSize="small" />
+                </IconButton>
+              ) : null
+            }
           />
         </Search>
 
