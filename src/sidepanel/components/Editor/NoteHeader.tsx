@@ -7,9 +7,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
 import PublicIcon from '@mui/icons-material/Public';
+import PrintIcon from '@mui/icons-material/Print';
 import { Note } from '../../types/note';
 import { MessageType } from '../../../types/messages';
 import { getNoteDisplayTitle } from '../../utils/title';
+import { AlternateEmail } from '@mui/icons-material';
 interface NoteHeaderProps {
   note: Note;
   onTitleChange: (newTitle: string) => void;
@@ -41,6 +43,42 @@ export const NoteHeader: React.FC<NoteHeaderProps> = ({
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setLocalTitle(note.title);
   }, [note.title]);
+
+  const handleEmail = () => {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = note.content;
+    const bodyText = tempDiv.textContent || tempDiv.innerText || '';
+
+    // Construct mailto link
+    // Use encodeURIComponent to ensure special characters are handled correctly
+    const subject = encodeURIComponent(getNoteDisplayTitle(note));
+    const body = encodeURIComponent(`${bodyText}\n\nLink: ${note.url}`);
+
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  };
+
+  const handlePrint = () => {
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>${getNoteDisplayTitle(note)}</title>
+            <style>
+              body { font-family: sans-serif; padding: 20px; }
+              h1 { margin-bottom: 20px; }
+            </style>
+          </head>
+          <body>
+            <h1>${getNoteDisplayTitle(note)}</h1>
+            <div>${note.content}</div>
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.print();
+    }
+  };
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
@@ -74,6 +112,16 @@ export const NoteHeader: React.FC<NoteHeaderProps> = ({
         <Tooltip title="Copy to clipboard">
           <IconButton size="small" onClick={onCopy}>
             <ContentCopyIcon fontSize="small" />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Send via email">
+          <IconButton size="small" onClick={handleEmail}>
+            <AlternateEmail fontSize="small" />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Print note">
+          <IconButton size="small" onClick={handlePrint}>
+            <PrintIcon fontSize="small" />
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete note">
