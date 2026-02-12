@@ -10,8 +10,10 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 
 import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
+import Tooltip from '@mui/material/Tooltip';
+import DownloadIcon from '@mui/icons-material/Download';
 import { NoteIdentifier, Scope, Note } from '../../types/note';
+import { exportToCsv } from '../../utils/export';
 
 const scopeLabels: Record<Scope, string> = {
   [Scope.Page]: 'This page',
@@ -24,7 +26,6 @@ interface NotesListProps {
   selectedNoteId: NoteIdentifier | null;
   onSelectNote: (id: NoteIdentifier) => void;
   onDeleteNote: (id: NoteIdentifier) => void;
-  onCreateNote: () => void;
   currentScope: Scope;
   isLoading?: boolean;
 }
@@ -53,11 +54,12 @@ export const NotesList: React.FC<NotesListProps> = ({
   selectedNoteId,
   onSelectNote,
   onDeleteNote,
-  onCreateNote,
   currentScope,
   isLoading = false,
 }) => {
-
+  const handleExport = () => {
+    exportToCsv(notes);
+  };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -118,15 +120,20 @@ export const NotesList: React.FC<NotesListProps> = ({
       </List>
 
       {/* Bottom Add Button */}
-      <Box sx={{ p: 1, borderTop: '1px solid rgba(0,0,0,0.08)' }}>
-        <Button
-          fullWidth
-          variant="outlined"
-          startIcon={<AddIcon />}
-          onClick={onCreateNote}
-        >
-          Add note
-        </Button>
+      <Box sx={{ p: 2, borderTop: '1px solid rgba(0,0,0,0.08)' }}>
+        <Tooltip title={notes.length === 0 ? "No notes to export" : `Export these ${notes.length} notes to CSV`}>
+          <span>
+            <Button
+              fullWidth
+              variant="outlined"
+              startIcon={<DownloadIcon />}
+              onClick={handleExport}
+              disabled={notes.length === 0}
+            >
+              Export notes to CSV
+            </Button>
+          </span>
+        </Tooltip>
       </Box>
     </Box>
   );

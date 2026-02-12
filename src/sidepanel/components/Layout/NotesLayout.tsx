@@ -114,7 +114,6 @@ export const NotesLayout: React.FC = () => {
             selectedNoteId={selectedNoteId}
             onSelectNote={setSelectedNoteId}
             onDeleteNote={handleDeleteNote}
-            onCreateNote={handleNewNote}
             currentScope={currentScope}
             isLoading={isLoading && !isStale}
           />
