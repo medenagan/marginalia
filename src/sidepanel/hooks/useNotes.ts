@@ -21,6 +21,13 @@ export interface UseNotesResult {
 export const useNotes = (limitedDomain?: BucketLocation): UseNotesResult => {
   const [notes, setNotes] = useState<Record<NoteIdentifier, Note>>({}); // Changed to Record
   const [isLoading, setIsLoading] = useState(true);
+  const [prevDomain, setPrevDomain] = useState<BucketLocation | undefined>(limitedDomain);
+
+  if (limitedDomain !== prevDomain) {
+    setPrevDomain(limitedDomain);
+    setIsLoading(true);
+  }
+
   const { activeTab } = useActiveTabContext();
 
   const url = activeTab?.url ?? '';

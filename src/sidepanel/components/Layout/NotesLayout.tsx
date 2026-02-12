@@ -2,6 +2,7 @@ import React, { useMemo, useState, useCallback, useDeferredValue } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import { NotesHeader } from './NotesHeader';
 import { NotesScopeTabs } from './NotesScopeTabs';
@@ -24,13 +25,14 @@ export const NotesLayout: React.FC = () => {
   const [currentScope, setCurrentScope] = useState<Scope>(Scope.Page);
   const [selectedNoteId, setSelectedNoteId] = useState<NoteIdentifier | null>(null);
   const [query, setQuery] = useState('');
-  const deferredQuery = useDeferredValue(query.trim().toLowerCase());
-  const isStale = query !== deferredQuery;
+  const cleanQuery = query.trim().toLowerCase();
+  const deferredQuery = useDeferredValue(cleanQuery);
+  const isStale = cleanQuery !== deferredQuery;
 
 
   const location = currentScope === Scope.Global ? undefined : resolveBucketLocation(activeTab?.url ?? '');
+  const { notes, isLoading, createNote, updateNote, deleteNote } = useNotes(location);
 
-  const { notes, createNote, updateNote, deleteNote } = useNotes(location);
 
   const handleScopeChange = (event: React.SyntheticEvent, newValue: Scope) => {
     setCurrentScope(newValue);
@@ -77,7 +79,9 @@ export const NotesLayout: React.FC = () => {
         onScopeChange={handleScopeChange}
       />
 
-      <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>
+      {isStale && <LinearProgress sx={{ width: '100%', position: 'absolute', zIndex: 1,bottom:0 }} />}
+
+      <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden', position: 'relative' }}>
         <Box
           sx={{
             width: { xs: selectedNoteId ? 0 : '100%', sm: 280 },
@@ -95,6 +99,7 @@ export const NotesLayout: React.FC = () => {
             onDeleteNote={handleDeleteNote}
             onCreateNote={handleNewNote}
             currentScope={currentScope}
+            isLoading={isLoading && !isStale}
           />
         </Box>
 

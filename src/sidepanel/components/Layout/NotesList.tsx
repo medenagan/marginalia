@@ -4,6 +4,10 @@ import { NotesListItem } from './NotesListItem';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
+import Skeleton from '@mui/material/Skeleton';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
 
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
@@ -22,7 +26,24 @@ interface NotesListProps {
   onDeleteNote: (id: NoteIdentifier) => void;
   onCreateNote: () => void;
   currentScope: Scope;
+  isLoading?: boolean;
 }
+
+const NotesListSkeleton = () => (
+  <>
+    {Array.from(new Array(6)).map((_, index) => (
+      <ListItem key={index} divider>
+        <ListItemAvatar>
+          <Skeleton variant="circular" width={40} height={40} />
+        </ListItemAvatar>
+        <ListItemText
+          primary={<Skeleton variant="text" width="60%" />}
+          secondary={<Skeleton variant="text" width="40%" />}
+        />
+      </ListItem>
+    ))}
+  </>
+);
 
 /**
  * Component that displays a scrollable list of notes for the current scope.
@@ -33,7 +54,8 @@ export const NotesList: React.FC<NotesListProps> = ({
   onSelectNote,
   onDeleteNote,
   onCreateNote,
-  currentScope
+  currentScope,
+  isLoading = false,
 }) => {
 
 
@@ -70,7 +92,9 @@ export const NotesList: React.FC<NotesListProps> = ({
         }}
         disablePadding
       >
-        {notes.length === 0 ? (
+        {isLoading ? (
+          <NotesListSkeleton />
+        ) : notes.length === 0 ? (
           <Box sx={{ p: 3, textAlign: 'center' }}>
             <Typography variant="body2" color="text.secondary">
               No notes found.
