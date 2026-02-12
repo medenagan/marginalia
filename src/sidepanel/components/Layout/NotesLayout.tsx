@@ -26,7 +26,7 @@ export const NotesLayout: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
 
-  const location = useMemo(() => resolveBucketLocation(currentScope === Scope.Global ? '*' : activeTab?.url ?? ''), [currentScope, activeTab?.url]);
+  const location = currentScope === Scope.Global ? undefined : resolveBucketLocation(activeTab?.url ?? '');
 
   const { notes, createNote, updateNote, deleteNote } = useNotes(location);
 

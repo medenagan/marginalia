@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { Note, NoteIdentifier } from '../types/note';
 import { BucketLocation } from '../types/database';
 import * as storage from '../utils/storage';
-import DOMPurify from 'dompurify';
 import { useActiveTabContext } from './useActiveTab';
 
 export interface UseNotesResult {
@@ -14,12 +13,12 @@ export interface UseNotesResult {
 }
 
 /**
- * Manages notes for a specific storage location.
+ * Manages notes, optionally restricted to a specific domain.
  * Syncs state with storage changes.
- * @param location - The target storage location.
+ * @param limitedDomain - Optional domain to restrict notes to. If undefined, fetches all notes.
  * @returns {UseNotesResult} Note management methods and state.
  */
-export const useNotes = (location: BucketLocation): UseNotesResult => {
+export const useNotes = (limitedDomain?: BucketLocation): UseNotesResult => {
   const [notes, setNotes] = useState<Note[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { activeTab } = useActiveTabContext();
@@ -29,59 +28,52 @@ export const useNotes = (location: BucketLocation): UseNotesResult => {
 
   useEffect(() => {
     let isMounted = true;
+    const locations = limitedDomain ? [limitedDomain] : undefined;
 
-    storage.getBucket(location).then((bucket) => {
+    storage.getNotes(locations).then((fetchedNotes) => {
       if (isMounted) {
-        setNotes(Object.values(bucket));
+        setNotes(fetchedNotes);
         setIsLoading(false);
       }
     });
 
-    const unsubscribe = storage.subscribeToBucket(location, (updatedNotes) => {
+    const unsubscribe = storage.subscribeToNotes((updatedNotes) => {
       if (isMounted) {
         setNotes(updatedNotes);
       }
-    });
+    }, locations);
 
     return () => {
       isMounted = false;
       unsubscribe();
     };
-  }, [location]);
+  }, [limitedDomain]);
 
   const createNote = useCallback(async () => {
     const noteData = {
       title: '',
-      content: DOMPurify.sanitize('<p></p>'),
+      content: '<p></p>',
       url,
       icon,
     };
-    return await storage.createNote(noteData, location);
-  }, [location, url, icon]);
+    // Always use the current tab's URL to determine the bucket location
+    // even if we are viewing "All Notes"
+    const note = await storage.createNote(noteData);
+    setNotes((prevNotes) => [...prevNotes, note]);
+    return note;
+  }, [url, icon]);
 
-  const updateNote = useCallback(
-    async (id: NoteIdentifier, updates: Partial<Note>) => {
-      const currentNote = notes.find((n) => n.id === id);
-      if (!currentNote) return;
+  const updateNote = async (id: NoteIdentifier, updates: Partial<Note>) => {
+    const updatedNote = await storage.updateNote(id, updates);
+    setNotes((prevNotes) => prevNotes.map((n) => (n.id === id ? updatedNote : n)));
+  };
 
-      const updatedNote: Note = {
-        ...currentNote,
-        ...updates,
-        content: updates.content ? DOMPurify.sanitize(updates.content) : currentNote.content,
-        updatedAt: Date.now(),
-      };
-
-      await storage.updateNote(updatedNote, location);
-    },
-    [notes, location],
-  );
-
-  const deleteNote = useCallback(
-    async (id: NoteIdentifier) => {
-      await storage.deleteNote(id, location);
-    },
-    [location],
-  );
+  const deleteNote = async (id: NoteIdentifier) => {
+    const deleted = await storage.deleteNote(id);
+    if (deleted) {
+      setNotes((prevNotes) => prevNotes.filter((n) => n.id !== id));
+    }
+  };
 
   return {
     notes,

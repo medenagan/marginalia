@@ -1,4 +1,4 @@
-import { Note } from '../sidepanel/types/note';
+import { getNoteIdentifier, Note } from '../sidepanel/types/note';
 import { resolveBucketLocation } from '../sidepanel/utils/storage';
 
 const getFaviconUrl = (url: string): string => {
@@ -81,16 +81,17 @@ export const storeMockNotes = async (count = 100): Promise<void> => {
   for (let i = 0; i < count; i++) {
     const url = getRandomElement(OPEN_SOURCE_URLS);
     const location = resolveBucketLocation(url);
+    const id = getNoteIdentifier(location);
 
     // Logic to resolve key manually
     const storageKey = `notes_domain:${location}`;
 
     const createdAt = getRandomDate();
     const note: Note = {
-      id: crypto.randomUUID(),
+      id,
       title: getRandomElement(LOREM_TITLES),
       content: getRandomElement(LOREM_CONTENT),
-      url: url,
+      url,
       icon: getFaviconUrl(url),
       createdAt: createdAt,
       updatedAt: createdAt,
