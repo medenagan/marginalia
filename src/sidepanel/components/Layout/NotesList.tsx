@@ -16,7 +16,7 @@ import { NoteIdentifier, Scope, Note } from '../../types/note';
 const scopeLabels: Record<Scope, string> = {
   [Scope.Page]: 'This page',
   [Scope.Domain]: 'This site',
-  [Scope.Global]: 'All sites',
+  [Scope.Global]: 'Everywhere',
 };
 
 interface NotesListProps {
