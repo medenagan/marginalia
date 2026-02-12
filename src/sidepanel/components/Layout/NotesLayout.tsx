@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from 'react';
+import React, { useMemo, useState, useCallback, useDeferredValue } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -24,6 +24,8 @@ export const NotesLayout: React.FC = () => {
   const [currentScope, setCurrentScope] = useState<Scope>(Scope.Page);
   const [selectedNoteId, setSelectedNoteId] = useState<NoteIdentifier | null>(null);
   const [query, setQuery] = useState('');
+  const deferredQuery = useDeferredValue(query.trim().toLowerCase());
+  const isStale = query !== deferredQuery;
 
 
   const location = currentScope === Scope.Global ? undefined : resolveBucketLocation(activeTab?.url ?? '');
@@ -48,18 +50,17 @@ export const NotesLayout: React.FC = () => {
     deleteNote(id);
   }, [deleteNote]);
 
-  const cleanQuery = query.trim().toLowerCase();
 
   const filteredNotes = useMemo(() => {
     const noteList = Object.values(notes);
     return noteList.filter((note) => {
-      if (!cleanQuery) return true;
+      if (!deferredQuery) return true;
       return (
-        note.title.toLowerCase().includes(cleanQuery) ||
-        note.content.toLowerCase().includes(cleanQuery)
+        note.title.toLowerCase().includes(deferredQuery) ||
+        note.content.toLowerCase().includes(deferredQuery)
       );
     }).sort((a, b) => b.updatedAt - a.updatedAt);
-  }, [notes, cleanQuery]);
+  }, [notes, deferredQuery]);
 
   const selectedNote = selectedNoteId ? notes[selectedNoteId] : null;
 
@@ -82,7 +83,9 @@ export const NotesLayout: React.FC = () => {
             width: { xs: selectedNoteId ? 0 : '100%', sm: 280 },
             flexShrink: 0,
             borderRight: '1px solid rgba(0,0,0,0.12)',
-            display: { xs: selectedNoteId ? 'none' : 'block', sm: 'block' }
+            display: { xs: selectedNoteId ? 'none' : 'block', sm: 'block' },
+            opacity: isStale ? 0.6 : 1,
+            transition: 'opacity 0.2s',
           }}
         >
           <NotesList
