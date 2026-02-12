@@ -38,26 +38,36 @@ const getStorageKeyFromNoteId = (id: NoteIdentifier): string => {
 /**
  * Retrieves notes from storage, optionally filtering by specific locations.
  * @param locations - Optional array of locations to fetch notes for. If undefined, fetches all notes.
- * @returns {Promise<Note[]>} A promise resolving to an array of notes.
+ * @returns {Promise<Record<NoteIdentifier, Note>>} A promise resolving to a record of notes.
  */
-export const getNotes = async (locations?: BucketLocation[]): Promise<Note[]> => {
-  let buckets: NotesBucket[] = [];
-
+export const getNotes = async (
+  locations?: BucketLocation[],
+): Promise<Record<NoteIdentifier, Note>> => {
   if (locations && locations.length > 0) {
     const keys = locations.map(resolveKeyFromLocation);
     const result = await chrome.storage.local.get(keys);
-    buckets = Object.values(result);
-  } else {
-    // Fetch all notes if no specific locations provided
-    const result = await chrome.storage.local.get(null);
-    Object.keys(result).forEach((key) => {
-      if (key.startsWith(STORAGE_PREFIX_DOMAIN)) {
-        buckets.push(result[key]);
-      }
-    });
+
+    return Object.values(result).reduce(
+      (acc, bucket) => ({
+        ...acc,
+        ...(bucket as NotesBucket),
+      }),
+      {} as Record<NoteIdentifier, Note>,
+    );
   }
 
-  return buckets.flatMap((bucket) => Object.values(bucket));
+  // Fetch all notes if no specific locations provided
+  const result = await chrome.storage.local.get(null);
+  return Object.entries(result)
+    .filter(([key]) => key.startsWith(STORAGE_PREFIX_DOMAIN))
+    .map(([, bucket]) => bucket as NotesBucket)
+    .reduce(
+      (acc, bucket) => ({
+        ...acc,
+        ...bucket,
+      }),
+      {} as Record<NoteIdentifier, Note>,
+    );
 };
 
 /**
@@ -147,12 +157,12 @@ export const deleteNote = async (id: NoteIdentifier): Promise<boolean> => {
 
 /**
  * Subscribes to changes for notes.
- * @param callback - Function called with the updated list of notes.
+ * @param callback - Function called with the updated record of notes.
  * @param locations - Optional array of locations to watch. If undefined, watches all notes.
  * @returns {Function} Unsubscribe function.
  */
 export const subscribeToNotes = (
-  callback: (notes: Note[]) => void,
+  callback: (notes: Record<NoteIdentifier, Note>) => void,
   locations?: BucketLocation[],
 ): (() => void) => {
   const interestedKeys = locations ? new Set(locations.map(resolveKeyFromLocation)) : null;

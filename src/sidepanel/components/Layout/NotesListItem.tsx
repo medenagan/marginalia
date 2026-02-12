@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
@@ -14,34 +15,44 @@ import { getRelativeTime } from '../../utils/time';
 import { getNoteDisplayTitle } from '../../utils/title';
 
 interface NotesListItemProps {
-  note: Note;
+  id: NoteIdentifier;
+  title: string;
+  updatedAt: number;
+  url?: string;
+  icon?: string | null;
   selected: boolean;
   onSelect: (id: NoteIdentifier) => void;
   onDelete: (id: NoteIdentifier) => void;
 }
 
-export const NotesListItem: React.FC<NotesListItemProps> = ({
-  note,
+export const NotesListItem: React.FC<NotesListItemProps> = React.memo(({
+  id,
+  title,
+  updatedAt,
+  url,
+  icon,
   selected,
   onSelect,
   onDelete,
 }) => {
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onDelete(note.id);
+    onDelete(id);
   };
 
   const handleIconClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (note.url) {
-      chrome.runtime.sendMessage({ type: MessageType.OPEN_URL, url: note.url });
+    if (url) {
+      chrome.runtime.sendMessage({ type: MessageType.OPEN_URL, url: url });
     }
   };
+
+  const noteForDisplay = { title, updatedAt };
 
   return (
     <ListItemButton
       selected={selected}
-      onClick={() => onSelect(note.id)}
+      onClick={() => onSelect(id)}
       divider
       sx={{
         alignItems: 'center',
@@ -50,14 +61,14 @@ export const NotesListItem: React.FC<NotesListItemProps> = ({
       }}
     >
       <ListItemAvatar>
-        <Tooltip title={`Visit ${note.url || '#'}`}>
+        <Tooltip title={`Visit ${url || '#'}`}>
           <IconButton onClick={handleIconClick} size="small" sx={{ mr: 1 }}>
             <Avatar
-              src={note.icon || undefined}
+              src={icon || undefined}
               sx={{
                 width: 24,
                 height: 24,
-                bgcolor: note.icon ? 'transparent' : 'primary.main',
+                bgcolor: icon ? 'transparent' : 'primary.main',
               }}
               variant="rounded"
             >
@@ -67,13 +78,13 @@ export const NotesListItem: React.FC<NotesListItemProps> = ({
         </Tooltip>
       </ListItemAvatar>
       <ListItemText
-        primary={getNoteDisplayTitle(note)}
+        primary={getNoteDisplayTitle(noteForDisplay as Note)}
         primaryTypographyProps={{
           variant: 'body2',
           fontWeight: 600,
           noWrap: true,
         }}
-        secondary={getRelativeTime(note.updatedAt)}
+        secondary={getRelativeTime(updatedAt)}
         secondaryTypographyProps={{
           variant: 'caption',
           noWrap: true,
@@ -98,4 +109,6 @@ export const NotesListItem: React.FC<NotesListItemProps> = ({
       </Tooltip>
     </ListItemButton>
   );
-};
+});
+
+NotesListItem.displayName = 'NotesListItem';

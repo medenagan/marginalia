@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -23,7 +23,7 @@ export const NotesLayout: React.FC = () => {
 
   const [currentScope, setCurrentScope] = useState<Scope>(Scope.Page);
   const [selectedNoteId, setSelectedNoteId] = useState<NoteIdentifier | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [query, setQuery] = useState('');
 
 
   const location = currentScope === Scope.Global ? undefined : resolveBucketLocation(activeTab?.url ?? '');
@@ -36,29 +36,37 @@ export const NotesLayout: React.FC = () => {
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    setQuery(e.target.value);
   };
 
-  const handleNewNote = async () => {
+  const handleNewNote = useCallback(async () => {
     const newNote = await createNote();
     setSelectedNoteId(newNote.id);
-  };
+  }, [createNote]);
 
-  const filteredNotes = useMemo(() => notes.filter((n) => {
-    if (!searchQuery.trim()) return true;
-    const q = searchQuery.toLowerCase();
-    return (
-      n.title.toLowerCase().includes(q) ||
-      n.content.toLowerCase().includes(q)
-    );
-  }).sort((a, b) => b.updatedAt - a.updatedAt), [notes, searchQuery]);
+  const handleDeleteNote = useCallback((id: NoteIdentifier) => {
+    deleteNote(id);
+  }, [deleteNote]);
 
-  const selectedNote = notes.find(n => n.id === selectedNoteId);
+  const cleanQuery = query.trim().toLowerCase();
+
+  const filteredNotes = useMemo(() => {
+    const noteList = Object.values(notes);
+    return noteList.filter((note) => {
+      if (!cleanQuery) return true;
+      return (
+        note.title.toLowerCase().includes(cleanQuery) ||
+        note.content.toLowerCase().includes(cleanQuery)
+      );
+    }).sort((a, b) => b.updatedAt - a.updatedAt);
+  }, [notes, cleanQuery]);
+
+  const selectedNote = selectedNoteId ? notes[selectedNoteId] : null;
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', bgcolor: 'background.default' }}>
       <NotesHeader
-        searchQuery={searchQuery}
+        searchQuery={query}
         onSearchChange={handleSearchChange}
         onNewNote={handleNewNote}
       />
@@ -81,7 +89,7 @@ export const NotesLayout: React.FC = () => {
             notes={filteredNotes}
             selectedNoteId={selectedNoteId}
             onSelectNote={setSelectedNoteId}
-            onDeleteNote={(id) => deleteNote(id)}
+            onDeleteNote={handleDeleteNote}
             onCreateNote={handleNewNote}
             currentScope={currentScope}
           />

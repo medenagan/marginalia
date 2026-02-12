@@ -80,7 +80,11 @@ export const NotesList: React.FC<NotesListProps> = ({
           notes.map((note) => (
             <NotesListItem
               key={note.id}
-              note={note}
+              id={note.id}
+              title={note.title}
+              updatedAt={note.updatedAt}
+              url={note.url}
+              icon={note.icon}
               selected={selectedNoteId === note.id}
               onSelect={onSelectNote}
               onDelete={onDeleteNote}
