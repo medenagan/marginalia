@@ -74,6 +74,11 @@ const getRandomDate = (): number => {
   }
 };
 
+/**
+ * Generates and stores mock notes in local storage.
+ * @param count - The number of mock notes to generate (default 100).
+ * @returns {Promise<void>}
+ */
 export const storeMockNotes = async (count = 100): Promise<void> => {
   console.log(`Generating ${count} mock notes...`);
   const notesByStorageKey: Record<string, Record<string, Note>> = {};

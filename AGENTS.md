@@ -18,24 +18,25 @@ Marginalia is a Chrome Extension built with React and TypeScript. This document 
 ├── dist/               # Compiled extension output
 ├── src/
 │   ├── assets/         # Static assets (images, manifest.json)
+│   ├── background/     # Service Worker logic
 │   ├── icons/          # Extension icons
+│   ├── mock/           # Chrome API mocks for development
 │   ├── sidepanel/      # Sidepanel UI Feature
 │   │   ├── components/ # Reusable UI components
 │   │   ├── hooks/      # Custom hooks (e.g., useActiveTab)
-│   │   ├── state/      # Global state management
-│   │   ├── utils/      # Utility helpers
 │   │   ├── App.tsx     # Main React component
+│   │   ├── index.html  # HTML entry for sidepanel
 │   │   └── index.tsx   # Entry point
-│   ├── background/     # Service Worker logic
-│   ├── mock/           # Chrome API mocks for development
-│   └── sidepanel.html  # HTML entry for sidepanel
+│   ├── styles/         # Global styles
+│   ├── types/          # Shared type definitions
+│   ├── utils/          # Shared utility helpers
 ├── package.json        # Dependencies and scripts
 ├── tsconfig.json       # TypeScript configuration
 └── webpack.config.js   # Webpack configuration
 ```
 
 ### Key Entry Points
--   **Sidepanel**: Logic in `src/sidepanel/index.tsx`, HTML in `src/sidepanel.html`.
+-   **Sidepanel**: Logic in `src/sidepanel/index.tsx`, HTML in `src/sidepanel/index.html`.
 -   **Background**: Service worker logic in `src/background/index.ts`.
 
 ## 3. Development Workflow
