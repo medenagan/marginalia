@@ -242,5 +242,33 @@
   "label_scope": {
     "message": "SCOPE:",
     "description": "Label for the current scope indicator"
+  },
+  "welcome_title": {
+    "message": "Welcome to Marginalia",
+    "description": "Title of the welcome page"
+  },
+  "welcome_description": {
+    "message": "Thank you for installing Marginalia. Your new companion for taking notes while you browse.",
+    "description": "Description on the welcome page"
+  },
+  "welcome_feature_context_title": {
+    "message": "Contextual Notes",
+    "description": "Title of the contextual notes feature"
+  },
+  "welcome_feature_context_desc": {
+    "message": "Take notes linked to specific pages or domains, and find them again when you return.",
+    "description": "Description of the contextual notes feature"
+  },
+  "welcome_feature_privacy_title": {
+    "message": "Privacy First",
+    "description": "Title of the privacy feature"
+  },
+  "welcome_feature_privacy_desc": {
+    "message": "Your notes are stored locally in your browser. No data leaves your device.",
+    "description": "Description of the privacy feature"
+  },
+  "welcome_button_start": {
+    "message": "Open Side Panel to Start",
+    "description": "Label for the start button"
   }
 }

@@ -18,8 +18,19 @@ const generateMockNotes = async () => {
   }
 };
 
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener((details) => {
   chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+
+  if (details.reason === 'install' || details.reason === 'update') {
+    chrome.tabs.create({ url: 'welcome.html' });
+  }
+
+  // Set the uninstall URL
+  chrome.runtime.setUninstallURL('https://medenagan.github.io/marginalia/goodbye.html', () => {
+    if (chrome.runtime.lastError) {
+      console.warn('Failed to set uninstall URL:', chrome.runtime.lastError);
+    }
+  });
 
   chrome.contextMenus.create({
     id: CONTEXT_MENU_ID,
