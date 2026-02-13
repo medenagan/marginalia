@@ -3,8 +3,12 @@
  * Handles extension installation and side panel behavior.
  */
 import { MessageType, isAppMessage } from '../types/messages';
+import { createNote } from '../utils/storage';
+import { Note } from '../types/note';
 
 import { storeMockNotes } from '../mock/notes';
+
+const CONTEXT_MENU_ID = 'create-marginalia-note';
 
 const generateMockNotes = async () => {
   const { mock_notes_generated } = await chrome.storage.local.get('mock_notes_generated');
@@ -16,7 +20,44 @@ const generateMockNotes = async () => {
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+
+  chrome.contextMenus.create({
+    id: CONTEXT_MENU_ID,
+    title: 'Add a new note: "%s"',
+    contexts: ['selection'],
+  });
+
   void generateMockNotes();
+});
+
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+  if (info.menuItemId === CONTEXT_MENU_ID && info.selectionText && tab && tab.id && tab.url) {
+    const noteData: Omit<Note, 'id' | 'updatedAt' | 'createdAt'> = {
+      title: tab.title || 'New Note',
+      content: info.selectionText,
+      url: tab.url,
+      icon: tab.favIconUrl || '',
+    };
+
+    // 1. Open Side Panel immediately (requires user gesture)
+    await chrome.sidePanel.open({ tabId: tab.id });
+
+    // 2. Create Note (async)
+    const newNote = await createNote(noteData);
+
+    // 3. Send Message to Side Panel
+    // Wait briefly for side panel to initialize
+    setTimeout(() => {
+      chrome.runtime
+        .sendMessage({
+          type: MessageType.SELECT_NOTE,
+          noteId: newNote.id,
+        })
+        .catch(() => {
+          // Ignore errors if side panel is not ready to receive message immediately
+        });
+    }, 500);
+  }
 });
 
 /**

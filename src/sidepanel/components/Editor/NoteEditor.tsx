@@ -6,8 +6,8 @@ import Paper from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
 import { NoteHeader } from './NoteHeader';
 import { RichTextToolbar } from './RichTextToolbar';
-import { getRelativeTime } from '../../utils/time';
-import { Note } from '../../types/note';
+import { getRelativeTime } from '../../../utils/time';
+import { Note } from '../../../types/note';
 
 interface NoteEditorProps {
   note: Note;

@@ -1,5 +1,5 @@
-import { getNoteIdentifier, Note } from '../sidepanel/types/note';
-import { resolveBucketLocation } from '../sidepanel/utils/storage';
+import { getNoteIdentifier, Note } from '../types/note';
+import { resolveBucketLocation } from '../utils/storage';
 
 const getFaviconUrl = (url: string): string => {
   try {

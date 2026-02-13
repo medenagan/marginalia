@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import DescriptionIcon from '@mui/icons-material/Description';
 import DnsIcon from '@mui/icons-material/Dns';
 import PublicIcon from '@mui/icons-material/Public';
-import { Scope } from '../../types/note';
+import { Scope } from '../../../types/note';
 import { useActiveTabContext } from '../../hooks/useActiveTab';
 import { TooltipTab } from './TooltipTab';
 

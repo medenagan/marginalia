@@ -12,8 +12,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import DownloadIcon from '@mui/icons-material/Download';
-import { NoteIdentifier, Scope, Note } from '../../types/note';
-import { exportToCsv } from '../../utils/export';
+import { NoteIdentifier, Scope, Note } from '../../../types/note';
+import { exportToCsv } from '../../../utils/export';
 
 const scopeLabels: Record<Scope, string> = {
   [Scope.Page]: 'This page',

@@ -70,6 +70,22 @@ export const getNotes = async (
     );
 };
 
+const isDOMAvailable = typeof window !== 'undefined' && typeof window.document !== 'undefined';
+
+/**
+ * Sanitizes HTML content using DOMPurify if DOM is available.
+ * @param content - The HTML content to sanitize.
+ * @returns {string} The sanitized content, or original content if DOM is unavailable.
+ */
+const sanitizeDom = (content: string): string => {
+  if (isDOMAvailable) {
+    return DOMPurify.sanitize(content);
+  }
+  return content;
+};
+
+// ... existing code ...
+
 /**
  * Creates a new note in storage.
  * @param noteData - The initial data for the note.
@@ -84,7 +100,7 @@ export const createNote = async (
   const id = getNoteIdentifier(location);
   const newNote: Note = {
     ...noteData,
-    content: DOMPurify.sanitize(noteData.content),
+    content: sanitizeDom(noteData.content),
     id,
     createdAt,
     updatedAt: createdAt,
@@ -126,7 +142,7 @@ export const updateNote = async (
   };
 
   if (updates.content) {
-    updatedNote.content = DOMPurify.sanitize(updates.content);
+    updatedNote.content = sanitizeDom(updates.content);
   }
 
   bucket[id] = updatedNote;

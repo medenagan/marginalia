@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Note, NoteIdentifier } from '../types/note';
-import { BucketLocation } from '../types/database';
-import * as storage from '../utils/storage';
+import { Note, NoteIdentifier } from '../../types/note';
+import { BucketLocation } from '../../types/database';
+import * as storage from '../../utils/storage';
 import { useActiveTabContext } from './useActiveTab';
 
 export interface UseNotesResult {

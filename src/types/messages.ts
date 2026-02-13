@@ -1,5 +1,8 @@
+import { NoteIdentifier } from './note';
+
 export enum MessageType {
   OPEN_URL = 'OPEN_URL',
+  SELECT_NOTE = 'SELECT_NOTE',
 }
 
 export interface OpenUrlMessage {
@@ -7,16 +10,30 @@ export interface OpenUrlMessage {
   url: string;
 }
 
-export type AppMessage = OpenUrlMessage;
+export interface SelectNoteMessage {
+  type: MessageType.SELECT_NOTE;
+  noteId: NoteIdentifier;
+}
+
+export type AppMessage = OpenUrlMessage | SelectNoteMessage;
 
 export const isAppMessage = (message: unknown): message is AppMessage => {
-  return (
-    !!message &&
-    typeof message === 'object' &&
-    'type' in message &&
-    typeof message.type === 'string' &&
-    message.type === MessageType.OPEN_URL &&
-    'url' in message &&
-    typeof message.url === 'string'
-  );
+  if (!message || typeof message !== 'object' || !('type' in message)) {
+    return false;
+  }
+
+  const msg = message as { type: unknown };
+
+  if (typeof msg.type !== 'string') {
+    return false;
+  }
+
+  switch (msg.type) {
+    case MessageType.OPEN_URL:
+      return 'url' in message && typeof (message as OpenUrlMessage).url === 'string';
+    case MessageType.SELECT_NOTE:
+      return 'noteId' in message && typeof (message as SelectNoteMessage).noteId === 'string';
+    default:
+      return false;
+  }
 };

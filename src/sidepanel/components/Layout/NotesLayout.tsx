@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, useDeferredValue } from 'react';
+import React, { useEffect, useMemo, useState, useCallback, useDeferredValue } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -6,15 +6,16 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 import { NotesHeader } from './NotesHeader';
 import { NotesScopeTabs } from './NotesScopeTabs';
-import { resolveBucketLocation } from '../../utils/storage';
-import { Scope, NoteIdentifier } from '../../types/note';
+import { resolveBucketLocation } from '../../../utils/storage';
+import { Scope, NoteIdentifier } from '../../../types/note';
 import { useActiveTabContext } from '../../hooks/useActiveTab';
 import { useNotes } from '../../hooks/useNotes';
 import { NotesList } from './NotesList';
 import { NoteEditor } from '../Editor/NoteEditor';
 import { DeleteConfirmDialog } from './DeleteConfirmDialog';
-import { getNoteDisplayTitle } from '../../utils/title';
-import { normalizeUrl } from '../../utils/urlScope';
+import { getNoteDisplayTitle } from '../../../utils/title';
+import { normalizeUrl } from '../../../utils/urlScope';
+import { MessageType, isAppMessage } from '../../../types/messages';
 
 
 
@@ -33,6 +34,19 @@ export const NotesLayout: React.FC = () => {
   const cleanQuery = query.trim().toLowerCase();
   const deferredQuery = useDeferredValue(cleanQuery);
   const isStale = cleanQuery !== deferredQuery;
+
+  useEffect(() => {
+    const handleMessage = (message: unknown) => {
+      if (!isAppMessage(message)) return;
+
+      if (message.type === MessageType.SELECT_NOTE) {
+        setSelectedNoteId(message.noteId);
+      }
+    };
+
+    chrome.runtime.onMessage.addListener(handleMessage);
+    return () => chrome.runtime.onMessage.removeListener(handleMessage);
+  }, []);
 
 
   const location = currentScope === Scope.Global ? undefined : resolveBucketLocation(contextUrl ?? '');

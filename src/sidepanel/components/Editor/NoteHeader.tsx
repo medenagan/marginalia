@@ -8,9 +8,9 @@ import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
 import PublicIcon from '@mui/icons-material/Public';
 import PrintIcon from '@mui/icons-material/Print';
-import { Note } from '../../types/note';
+import { Note } from '../../../types/note';
 import { MessageType } from '../../../types/messages';
-import { getNoteDisplayTitle } from '../../utils/title';
+import { getNoteDisplayTitle } from '../../../utils/title';
 import { AlternateEmail } from '@mui/icons-material';
 interface NoteHeaderProps {
   note: Note;

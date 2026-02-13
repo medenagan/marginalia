@@ -9,10 +9,10 @@ import PublicIcon from '@mui/icons-material/Public';
 import Avatar from '@mui/material/Avatar';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Tooltip from '@mui/material/Tooltip';
-import { Note, NoteIdentifier } from '../../types/note';
+import { Note, NoteIdentifier } from '../../../types/note';
 import { MessageType } from '../../../types/messages';
-import { getRelativeTime } from '../../utils/time';
-import { getNoteDisplayTitle } from '../../utils/title';
+import { getRelativeTime } from '../../../utils/time';
+import { getNoteDisplayTitle } from '../../../utils/title';
 
 interface NotesListItemProps {
   id: NoteIdentifier;
