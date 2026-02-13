@@ -6,22 +6,32 @@ import { MessageType, isAppMessage } from '../types/messages';
 import { createNote } from '../utils/storage';
 import { Note } from '../types/note';
 
-import { storeMockNotes } from '../mock/notes';
-
 const CONTEXT_MENU_ID = 'create-marginalia-note';
 
-const generateMockNotes = async () => {
-  const { mock_notes_generated } = await chrome.storage.local.get('mock_notes_generated');
-  if (!mock_notes_generated) {
-    await storeMockNotes(1000);
-    await chrome.storage.local.set({ mock_notes_generated: true });
+const generateWelcomingNote = async () => {
+  const { welcoming_note_created } = await chrome.storage.local.get('welcoming_note_created');
+  if (!welcoming_note_created) {
+    const url = chrome.runtime.getURL('welcome.html');
+    const title = chrome.i18n.getMessage('welcome_note_title');
+    const content = chrome.i18n.getMessage('welcome_note_content');
+    const icon = chrome.runtime.getURL('icons/icon-48.png');
+
+    await createNote({
+      title,
+      content,
+      url,
+      icon,
+    });
+
+    await chrome.storage.local.set({ welcoming_note_created: true });
   }
 };
 
-chrome.runtime.onInstalled.addListener((details) => {
+chrome.runtime.onInstalled.addListener(async (details) => {
   chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
 
   if (details.reason === 'install' || details.reason === 'update') {
+    await generateWelcomingNote();
     chrome.tabs.create({ url: 'welcome.html' });
   }
 
@@ -37,8 +47,6 @@ chrome.runtime.onInstalled.addListener((details) => {
     title: chrome.i18n.getMessage('contextMenu_addNote'),
     contexts: ['selection'],
   });
-
-  void generateMockNotes();
 });
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {

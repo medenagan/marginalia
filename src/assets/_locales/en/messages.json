@@ -270,5 +270,13 @@
   "welcome_button_start": {
     "message": "Open Side Panel to Start",
     "description": "Label for the start button"
+  },
+  "welcome_note_title": {
+    "message": "Welcome to your new notebook!",
+    "description": "Title of the first welcoming note"
+  },
+  "welcome_note_content": {
+    "message": "<p>This is your first note. You can use Marginalia to take notes on any page.</p><p>Try selecting text on a webpage and right-clicking to add a note.</p>",
+    "description": "Content of the first welcoming note"
   }
 }
