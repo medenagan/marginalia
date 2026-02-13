@@ -2,6 +2,7 @@
   "name": "marginalia",
   "version": "1.0.0",
   "description": "Marginalia Chrome Extension",
+  "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
     "build-mock": "USE_MOCK=true webpack --mode production",
