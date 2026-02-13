@@ -13,7 +13,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["sidePanel", "storage", "activeTab", "tabs", "contextMenus"],
+  "permissions": ["sidePanel", "storage", "tabs", "contextMenus"],
   "side_panel": {
     "default_path": "sidepanel.html"
   },
