@@ -1,0 +1,204 @@
+{
+  "appName": { "message": "Marginalia", "description": "The name of the extension" },
+  "appDescription": {
+    "message": "Guarde pensamentos, lembretes ou contexto enquanto navega e encontre-os novamente ao regressar.",
+    "description": "The description of the extension"
+  },
+  "contextMenu_addNote": {
+    "message": "Adicionar nova nota: \"%s\"",
+    "description": "Context menu item to add a new note from selection"
+  },
+  "scope_page": { "message": "Esta página", "description": "Label for the page scope filter" },
+  "scope_site": { "message": "Este sítio", "description": "Label for the site scope filter" },
+  "scope_global": {
+    "message": "Em todo o lado",
+    "description": "Label for the global scope filter"
+  },
+  "search_placeholder": {
+    "message": "Pesquisar...",
+    "description": "Placeholder text for the search input"
+  },
+  "button_new": { "message": "Nova", "description": "Label for the new note button" },
+  "button_export": { "message": "Exportar para CSV", "description": "Label for the export button" },
+  "no_notes": {
+    "message": "Nenhuma nota encontrada.",
+    "description": "Message displayed when the note list is empty"
+  },
+  "notes_count": {
+    "message": "$COUNT$ notas",
+    "description": "Label showing the number of notes",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "delete_dialog_title": {
+    "message": "Eliminar nota?",
+    "description": "Title of the delete confirmation dialog"
+  },
+  "delete_dialog_content": {
+    "message": "Tem a certeza que deseja eliminar a nota \"$TITLE$\"? Esta ação é irreversível.",
+    "description": "Content of the delete confirmation dialog",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "button_cancel": { "message": "Cancelar", "description": "Label for cancel button" },
+  "button_delete": { "message": "Eliminar", "description": "Label for delete button" },
+  "tooltip_export": {
+    "message": "Exportar estas $COUNT$ notas para CSV",
+    "description": "Tooltip for export button",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "tooltip_visit_url": {
+    "message": "Visitar $URL$",
+    "description": "Tooltip for visiting the note's URL",
+    "placeholders": { "url": { "content": "$1" } }
+  },
+  "tooltip_delete": { "message": "Eliminar", "description": "Tooltip for delete button" },
+  "status_saved": {
+    "message": "Guardado localmente",
+    "description": "Status message indicating note is saved"
+  },
+  "tooltip_last_modified": {
+    "message": "Última modificação: $DATE$",
+    "description": "Tooltip showing last modification date",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "tooltip_copy": {
+    "message": "Copiar para a área de transferência",
+    "description": "Tooltip for copy button"
+  },
+  "tooltip_email": { "message": "Enviar por e-mail", "description": "Tooltip for email button" },
+  "tooltip_print": { "message": "Imprimir nota", "description": "Tooltip for print button" },
+  "tooltip_scope_page": {
+    "message": "Mostrar notas para esta página específica",
+    "description": "Tooltip for page scope tab"
+  },
+  "tooltip_scope_site": {
+    "message": "Mostrar notas para $DOMAIN$",
+    "description": "Tooltip for site scope tab",
+    "placeholders": { "domain": { "content": "$1" } }
+  },
+  "tooltip_scope_site_fallback": {
+    "message": "Mostrar notas para este domínio",
+    "description": "Tooltip for site scope tab when domain is unknown"
+  },
+  "tooltip_scope_global": {
+    "message": "Mostrar todas as notas de todo o lado",
+    "description": "Tooltip for global scope tab"
+  },
+  "template_title_today": {
+    "message": "Nota de hoje às $TIME$",
+    "description": "Template for today's note title",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "template_title_yesterday": {
+    "message": "Nota de ontem",
+    "description": "Template for yesterday's note title"
+  },
+  "template_title_last_week": {
+    "message": "Nota de $DAYNAME$",
+    "description": "Template for note title from last week",
+    "placeholders": { "dayname": { "content": "$1" } }
+  },
+  "template_title_older": {
+    "message": "Nota de $DAY$ de $MONTH$",
+    "description": "Template for older note title",
+    "placeholders": { "month": { "content": "$1" }, "day": { "content": "$2" } }
+  },
+  "template_title_older_year": {
+    "message": "Nota de $DAY$ de $MONTH$ de $YEAR$",
+    "description": "Template for older note title with year",
+    "placeholders": {
+      "month": { "content": "$1" },
+      "day": { "content": "$2" },
+      "year": { "content": "$3" }
+    }
+  },
+  "weekday_sunday": { "message": "Domingo", "description": "Day of the week: Sunday" },
+  "weekday_monday": { "message": "Segunda-feira", "description": "Day of the week: Monday" },
+  "weekday_tuesday": { "message": "Terça-feira", "description": "Day of the week: Tuesday" },
+  "weekday_wednesday": { "message": "Quarta-feira", "description": "Day of the week: Wednesday" },
+  "weekday_thursday": { "message": "Quinta-feira", "description": "Day of the week: Thursday" },
+  "weekday_friday": { "message": "Sexta-feira", "description": "Day of the week: Friday" },
+  "weekday_saturday": { "message": "Sábado", "description": "Day of the week: Saturday" },
+  "month_jan": { "message": "Jan", "description": "Month abbreviation: January" },
+  "month_feb": { "message": "Fev", "description": "Month abbreviation: February" },
+  "month_mar": { "message": "Mar", "description": "Month abbreviation: March" },
+  "month_apr": { "message": "Abr", "description": "Month abbreviation: April" },
+  "month_may": { "message": "Mai", "description": "Month abbreviation: May" },
+  "month_jun": { "message": "Jun", "description": "Month abbreviation: June" },
+  "month_jul": { "message": "Jul", "description": "Month abbreviation: July" },
+  "month_aug": { "message": "Ago", "description": "Month abbreviation: August" },
+  "month_sep": { "message": "Set", "description": "Month abbreviation: September" },
+  "month_oct": { "message": "Out", "description": "Month abbreviation: October" },
+  "month_nov": { "message": "Nov", "description": "Month abbreviation: November" },
+  "month_dec": { "message": "Dez", "description": "Month abbreviation: December" },
+  "export_header_title": { "message": "Título", "description": "CSV Export Header: Title" },
+  "export_header_content": { "message": "Conteúdo", "description": "CSV Export Header: Content" },
+  "export_header_url": { "message": "URL", "description": "CSV Export Header: URL" },
+  "export_header_created_at": {
+    "message": "Criado em",
+    "description": "CSV Export Header: Creation Date"
+  },
+  "export_header_updated_at": {
+    "message": "Atualizado em",
+    "description": "CSV Export Header: Last Update Date"
+  },
+  "time_just_now": { "message": "Agora mesmo", "description": "Relative time: just now" },
+  "time_minute_ago": { "message": "Há 1 minuto", "description": "Relative time: 1 minute ago" },
+  "time_minutes_ago": {
+    "message": "Há $COUNT$ minutos",
+    "description": "Relative time: multiple minutes ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_hour_ago": { "message": "Há 1 hora", "description": "Relative time: 1 hour ago" },
+  "time_hours_ago": {
+    "message": "Há $COUNT$ horas",
+    "description": "Relative time: multiple hours ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_day_ago": { "message": "Há 1 dia", "description": "Relative time: 1 day ago" },
+  "time_days_ago": {
+    "message": "Há $COUNT$ dias",
+    "description": "Relative time: multiple days ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "select_note_to_view": {
+    "message": "Selecione uma nota para visualizar",
+    "description": "Message displayed when no note is selected"
+  },
+  "label_scope": { "message": "ÂMBITO:", "description": "Label for the current scope indicator" },
+  "welcome_title": {
+    "message": "Bem-vindo ao Marginalia",
+    "description": "Title of the welcome page"
+  },
+  "welcome_description": {
+    "message": "Obrigado por instalar o Marginalia. O seu novo companheiro para tomar notas enquanto navega.",
+    "description": "Description on the welcome page"
+  },
+  "welcome_feature_context_title": {
+    "message": "Notas Contextuais",
+    "description": "Title of the contextual notes feature"
+  },
+  "welcome_feature_context_desc": {
+    "message": "Tome notas associadas a páginas ou domínios específicos e encontre-as novamente quando regressar.",
+    "description": "Description of the contextual notes feature"
+  },
+  "welcome_feature_privacy_title": {
+    "message": "Privacidade em Primeiro Lugar",
+    "description": "Title of the privacy feature"
+  },
+  "welcome_feature_privacy_desc": {
+    "message": "As suas notas são armazenadas localmente no seu browser. Nenhum dado sai do seu dispositivo.",
+    "description": "Description of the privacy feature"
+  },
+  "welcome_button_start": {
+    "message": "Abrir Painel Lateral para Começar",
+    "description": "Label for the start button"
+  },
+  "welcome_note_title": {
+    "message": "Bem-vindo ao seu novo caderno!",
+    "description": "Title of the first welcoming note"
+  },
+  "welcome_note_content": {
+    "message": "<p>Esta é a sua primeira nota. Pode usar o Marginalia para tomar notas em qualquer página.</p><p>Tente selecionar texto numa página web e clique com o botão direito para adicionar uma nota.</p>",
+    "description": "Content of the first welcoming note"
+  }
+}

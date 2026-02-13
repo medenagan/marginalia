@@ -1,0 +1,198 @@
+{
+  "appName": { "message": "Marginalia", "description": "The name of the extension" },
+  "appDescription": {
+    "message": "Gezinirken düşünceleri, hatırlatıcıları veya bağlamı kaydedin ve geri döndüğünüzde onları tekrar bulun.",
+    "description": "The description of the extension"
+  },
+  "contextMenu_addNote": {
+    "message": "Yeni not ekle: \"%s\"",
+    "description": "Context menu item to add a new note from selection"
+  },
+  "scope_page": { "message": "Bu sayfa", "description": "Label for the page scope filter" },
+  "scope_site": { "message": "Bu site", "description": "Label for the site scope filter" },
+  "scope_global": { "message": "Her yer", "description": "Label for the global scope filter" },
+  "search_placeholder": {
+    "message": "Ara...",
+    "description": "Placeholder text for the search input"
+  },
+  "button_new": { "message": "Yeni", "description": "Label for the new note button" },
+  "button_export": { "message": "CSV'ye aktar", "description": "Label for the export button" },
+  "no_notes": {
+    "message": "Not bulunamadı.",
+    "description": "Message displayed when the note list is empty"
+  },
+  "notes_count": {
+    "message": "$COUNT$ not",
+    "description": "Label showing the number of notes",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "delete_dialog_title": {
+    "message": "Not silinsin mi?",
+    "description": "Title of the delete confirmation dialog"
+  },
+  "delete_dialog_content": {
+    "message": "\"$TITLE$\" notunu silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+    "description": "Content of the delete confirmation dialog",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "button_cancel": { "message": "İptal", "description": "Label for cancel button" },
+  "button_delete": { "message": "Sil", "description": "Label for delete button" },
+  "tooltip_export": {
+    "message": "Bu $COUNT$ notu CSV'ye aktar",
+    "description": "Tooltip for export button",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "tooltip_visit_url": {
+    "message": "Ziyaret et: $URL$",
+    "description": "Tooltip for visiting the note's URL",
+    "placeholders": { "url": { "content": "$1" } }
+  },
+  "tooltip_delete": { "message": "Sil", "description": "Tooltip for delete button" },
+  "status_saved": {
+    "message": "Yerel olarak kaydedildi",
+    "description": "Status message indicating note is saved"
+  },
+  "tooltip_last_modified": {
+    "message": "Son değişiklik: $DATE$",
+    "description": "Tooltip showing last modification date",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "tooltip_copy": { "message": "Panoya kopyala", "description": "Tooltip for copy button" },
+  "tooltip_email": { "message": "E-posta ile gönder", "description": "Tooltip for email button" },
+  "tooltip_print": { "message": "Notu yazdır", "description": "Tooltip for print button" },
+  "tooltip_scope_page": {
+    "message": "Bu sayfa için notları göster",
+    "description": "Tooltip for page scope tab"
+  },
+  "tooltip_scope_site": {
+    "message": "$DOMAIN$ için notları göster",
+    "description": "Tooltip for site scope tab",
+    "placeholders": { "domain": { "content": "$1" } }
+  },
+  "tooltip_scope_site_fallback": {
+    "message": "Bu alan adı için notları göster",
+    "description": "Tooltip for site scope tab when domain is unknown"
+  },
+  "tooltip_scope_global": {
+    "message": "Her yerden tüm notları göster",
+    "description": "Tooltip for global scope tab"
+  },
+  "template_title_today": {
+    "message": "Bugünün notu - $TIME$",
+    "description": "Template for today's note title",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "template_title_yesterday": {
+    "message": "Dünün notu",
+    "description": "Template for yesterday's note title"
+  },
+  "template_title_last_week": {
+    "message": "$DAYNAME$ notu",
+    "description": "Template for note title from last week",
+    "placeholders": { "dayname": { "content": "$1" } }
+  },
+  "template_title_older": {
+    "message": "$DAY$ $MONTH$ notu",
+    "description": "Template for older note title",
+    "placeholders": { "month": { "content": "$1" }, "day": { "content": "$2" } }
+  },
+  "template_title_older_year": {
+    "message": "$DAY$ $MONTH$ $YEAR$ notu",
+    "description": "Template for older note title with year",
+    "placeholders": {
+      "month": { "content": "$1" },
+      "day": { "content": "$2" },
+      "year": { "content": "$3" }
+    }
+  },
+  "weekday_sunday": { "message": "Pazar", "description": "Day of the week: Sunday" },
+  "weekday_monday": { "message": "Pazartesi", "description": "Day of the week: Monday" },
+  "weekday_tuesday": { "message": "Salı", "description": "Day of the week: Tuesday" },
+  "weekday_wednesday": { "message": "Çarşamba", "description": "Day of the week: Wednesday" },
+  "weekday_thursday": { "message": "Perşembe", "description": "Day of the week: Thursday" },
+  "weekday_friday": { "message": "Cuma", "description": "Day of the week: Friday" },
+  "weekday_saturday": { "message": "Cumartesi", "description": "Day of the week: Saturday" },
+  "month_jan": { "message": "Oca", "description": "Month abbreviation: January" },
+  "month_feb": { "message": "Şub", "description": "Month abbreviation: February" },
+  "month_mar": { "message": "Mar", "description": "Month abbreviation: March" },
+  "month_apr": { "message": "Nis", "description": "Month abbreviation: April" },
+  "month_may": { "message": "May", "description": "Month abbreviation: May" },
+  "month_jun": { "message": "Haz", "description": "Month abbreviation: June" },
+  "month_jul": { "message": "Tem", "description": "Month abbreviation: July" },
+  "month_aug": { "message": "Ağu", "description": "Month abbreviation: August" },
+  "month_sep": { "message": "Eyl", "description": "Month abbreviation: September" },
+  "month_oct": { "message": "Eki", "description": "Month abbreviation: October" },
+  "month_nov": { "message": "Kas", "description": "Month abbreviation: November" },
+  "month_dec": { "message": "Ara", "description": "Month abbreviation: December" },
+  "export_header_title": { "message": "Başlık", "description": "CSV Export Header: Title" },
+  "export_header_content": { "message": "İçerik", "description": "CSV Export Header: Content" },
+  "export_header_url": { "message": "URL", "description": "CSV Export Header: URL" },
+  "export_header_created_at": {
+    "message": "Oluşturulma Tarihi",
+    "description": "CSV Export Header: Creation Date"
+  },
+  "export_header_updated_at": {
+    "message": "Güncellenme Tarihi",
+    "description": "CSV Export Header: Last Update Date"
+  },
+  "time_just_now": { "message": "Az önce", "description": "Relative time: just now" },
+  "time_minute_ago": { "message": "1 dakika önce", "description": "Relative time: 1 minute ago" },
+  "time_minutes_ago": {
+    "message": "$COUNT$ dakika önce",
+    "description": "Relative time: multiple minutes ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_hour_ago": { "message": "1 saat önce", "description": "Relative time: 1 hour ago" },
+  "time_hours_ago": {
+    "message": "$COUNT$ saat önce",
+    "description": "Relative time: multiple hours ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_day_ago": { "message": "1 gün önce", "description": "Relative time: 1 day ago" },
+  "time_days_ago": {
+    "message": "$COUNT$ gün önce",
+    "description": "Relative time: multiple days ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "select_note_to_view": {
+    "message": "Görüntülemek için bir not seçin",
+    "description": "Message displayed when no note is selected"
+  },
+  "label_scope": { "message": "KAPSAM:", "description": "Label for the current scope indicator" },
+  "welcome_title": {
+    "message": "Marginalia'ya Hoş Geldiniz",
+    "description": "Title of the welcome page"
+  },
+  "welcome_description": {
+    "message": "Marginalia'yı yüklediğiniz için teşekkürler. Gezinirken not almak için yeni yol arkadaşınız.",
+    "description": "Description on the welcome page"
+  },
+  "welcome_feature_context_title": {
+    "message": "Bağlamsal Notlar",
+    "description": "Title of the contextual notes feature"
+  },
+  "welcome_feature_context_desc": {
+    "message": "Belirli sayfalara veya alan adlarına bağlı notlar alın ve geri döndüğünüzde onları bulun.",
+    "description": "Description of the contextual notes feature"
+  },
+  "welcome_feature_privacy_title": {
+    "message": "Önce Gizlilik",
+    "description": "Title of the privacy feature"
+  },
+  "welcome_feature_privacy_desc": {
+    "message": "Notlarınız tarayıcınızda yerel olarak saklanır. Hiçbir veri cihazınızdan çıkmaz.",
+    "description": "Description of the privacy feature"
+  },
+  "welcome_button_start": {
+    "message": "Başlamak için Yan Paneli Açın",
+    "description": "Label for the start button"
+  },
+  "welcome_note_title": {
+    "message": "Yeni not defterinize hoş geldiniz!",
+    "description": "Title of the first welcoming note"
+  },
+  "welcome_note_content": {
+    "message": "<p>Bu sizin ilk notunuz. Marginalia'yı herhangi bir sayfada not almak için kullanabilirsiniz.</p><p>Bir web sayfasında metin seçip sağ tıklayarak not eklemeyi deneyin.</p>",
+    "description": "Content of the first welcoming note"
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "appName": { "message": "Marginalia", "description": "The name of the extension" },
+  "appDescription": {
+    "message": "Gem tanker, påmindelser eller kontekst mens du browser, og find dem igen når du vender tilbage.",
+    "description": "The description of the extension"
+  },
+  "contextMenu_addNote": {
+    "message": "Tilføj ny note: \"%s\"",
+    "description": "Context menu item to add a new note from selection"
+  },
+  "scope_page": { "message": "Denne side", "description": "Label for the page scope filter" },
+  "scope_site": { "message": "Dette websted", "description": "Label for the site scope filter" },
+  "scope_global": { "message": "Overalt", "description": "Label for the global scope filter" },
+  "search_placeholder": {
+    "message": "Søg...",
+    "description": "Placeholder text for the search input"
+  },
+  "button_new": { "message": "Ny", "description": "Label for the new note button" },
+  "button_export": { "message": "Eksporter til CSV", "description": "Label for the export button" },
+  "no_notes": {
+    "message": "Ingen noter fundet.",
+    "description": "Message displayed when the note list is empty"
+  },
+  "notes_count": {
+    "message": "$COUNT$ noter",
+    "description": "Label showing the number of notes",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "delete_dialog_title": {
+    "message": "Slet note?",
+    "description": "Title of the delete confirmation dialog"
+  },
+  "delete_dialog_content": {
+    "message": "Er du sikker på, at du vil slette noten \"$TITLE$\"? Denne handling kan ikke fortrydes.",
+    "description": "Content of the delete confirmation dialog",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "button_cancel": { "message": "Annuller", "description": "Label for cancel button" },
+  "button_delete": { "message": "Slet", "description": "Label for delete button" },
+  "tooltip_export": {
+    "message": "Eksporter disse $COUNT$ noter til CSV",
+    "description": "Tooltip for export button",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "tooltip_visit_url": {
+    "message": "Besøg $URL$",
+    "description": "Tooltip for visiting the note's URL",
+    "placeholders": { "url": { "content": "$1" } }
+  },
+  "tooltip_delete": { "message": "Slet", "description": "Tooltip for delete button" },
+  "status_saved": {
+    "message": "Gemt lokalt",
+    "description": "Status message indicating note is saved"
+  },
+  "tooltip_last_modified": {
+    "message": "Sidst ændret: $DATE$",
+    "description": "Tooltip showing last modification date",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "tooltip_copy": {
+    "message": "Kopier til udklipsholder",
+    "description": "Tooltip for copy button"
+  },
+  "tooltip_email": { "message": "Send via e-mail", "description": "Tooltip for email button" },
+  "tooltip_print": { "message": "Udskriv note", "description": "Tooltip for print button" },
+  "tooltip_scope_page": {
+    "message": "Vis noter for denne specifikke side",
+    "description": "Tooltip for page scope tab"
+  },
+  "tooltip_scope_site": {
+    "message": "Vis noter for $DOMAIN$",
+    "description": "Tooltip for site scope tab",
+    "placeholders": { "domain": { "content": "$1" } }
+  },
+  "tooltip_scope_site_fallback": {
+    "message": "Vis noter for dette domæne",
+    "description": "Tooltip for site scope tab when domain is unknown"
+  },
+  "tooltip_scope_global": {
+    "message": "Vis alle noter fra overalt",
+    "description": "Tooltip for global scope tab"
+  },
+  "template_title_today": {
+    "message": "Dagens note kl. $TIME$",
+    "description": "Template for today's note title",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "template_title_yesterday": {
+    "message": "Gårsdagens note",
+    "description": "Template for yesterday's note title"
+  },
+  "template_title_last_week": {
+    "message": "Note fra $DAYNAME$",
+    "description": "Template for note title from last week",
+    "placeholders": { "dayname": { "content": "$1" } }
+  },
+  "template_title_older": {
+    "message": "Note $DAY$. $MONTH$",
+    "description": "Template for older note title",
+    "placeholders": { "month": { "content": "$1" }, "day": { "content": "$2" } }
+  },
+  "template_title_older_year": {
+    "message": "Note $DAY$. $MONTH$ $YEAR$",
+    "description": "Template for older note title with year",
+    "placeholders": {
+      "month": { "content": "$1" },
+      "day": { "content": "$2" },
+      "year": { "content": "$3" }
+    }
+  },
+  "weekday_sunday": { "message": "Søndag", "description": "Day of the week: Sunday" },
+  "weekday_monday": { "message": "Mandag", "description": "Day of the week: Monday" },
+  "weekday_tuesday": { "message": "Tirsdag", "description": "Day of the week: Tuesday" },
+  "weekday_wednesday": { "message": "Onsdag", "description": "Day of the week: Wednesday" },
+  "weekday_thursday": { "message": "Torsdag", "description": "Day of the week: Thursday" },
+  "weekday_friday": { "message": "Fredag", "description": "Day of the week: Friday" },
+  "weekday_saturday": { "message": "Lørdag", "description": "Day of the week: Saturday" },
+  "month_jan": { "message": "Jan", "description": "Month abbreviation: January" },
+  "month_feb": { "message": "Feb", "description": "Month abbreviation: February" },
+  "month_mar": { "message": "Mar", "description": "Month abbreviation: March" },
+  "month_apr": { "message": "Apr", "description": "Month abbreviation: April" },
+  "month_may": { "message": "Maj", "description": "Month abbreviation: May" },
+  "month_jun": { "message": "Jun", "description": "Month abbreviation: June" },
+  "month_jul": { "message": "Jul", "description": "Month abbreviation: July" },
+  "month_aug": { "message": "Aug", "description": "Month abbreviation: August" },
+  "month_sep": { "message": "Sep", "description": "Month abbreviation: September" },
+  "month_oct": { "message": "Okt", "description": "Month abbreviation: October" },
+  "month_nov": { "message": "Nov", "description": "Month abbreviation: November" },
+  "month_dec": { "message": "Dec", "description": "Month abbreviation: December" },
+  "export_header_title": { "message": "Titel", "description": "CSV Export Header: Title" },
+  "export_header_content": { "message": "Indhold", "description": "CSV Export Header: Content" },
+  "export_header_url": { "message": "URL", "description": "CSV Export Header: URL" },
+  "export_header_created_at": {
+    "message": "Oprettet",
+    "description": "CSV Export Header: Creation Date"
+  },
+  "export_header_updated_at": {
+    "message": "Opdateret",
+    "description": "CSV Export Header: Last Update Date"
+  },
+  "time_just_now": { "message": "Lige nu", "description": "Relative time: just now" },
+  "time_minute_ago": { "message": "1 minut siden", "description": "Relative time: 1 minute ago" },
+  "time_minutes_ago": {
+    "message": "$COUNT$ minutter siden",
+    "description": "Relative time: multiple minutes ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_hour_ago": { "message": "1 time siden", "description": "Relative time: 1 hour ago" },
+  "time_hours_ago": {
+    "message": "$COUNT$ timer siden",
+    "description": "Relative time: multiple hours ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_day_ago": { "message": "1 dag siden", "description": "Relative time: 1 day ago" },
+  "time_days_ago": {
+    "message": "$COUNT$ dage siden",
+    "description": "Relative time: multiple days ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "select_note_to_view": {
+    "message": "Vælg en note for at se den",
+    "description": "Message displayed when no note is selected"
+  },
+  "label_scope": { "message": "OMFANG:", "description": "Label for the current scope indicator" },
+  "welcome_title": {
+    "message": "Velkommen til Marginalia",
+    "description": "Title of the welcome page"
+  },
+  "welcome_description": {
+    "message": "Tak fordi du installerede Marginalia. Din nye følgesvend til at tage noter mens du browser.",
+    "description": "Description on the welcome page"
+  },
+  "welcome_feature_context_title": {
+    "message": "Kontekstuelle noter",
+    "description": "Title of the contextual notes feature"
+  },
+  "welcome_feature_context_desc": {
+    "message": "Tag noter knyttet til specifikke sider eller domæner, og find dem igen.",
+    "description": "Description of the contextual notes feature"
+  },
+  "welcome_feature_privacy_title": {
+    "message": "Privatliv først",
+    "description": "Title of the privacy feature"
+  },
+  "welcome_feature_privacy_desc": {
+    "message": "Dine noter gemmes lokalt i din browser. Ingen data forlader din enhed.",
+    "description": "Description of the privacy feature"
+  },
+  "welcome_button_start": {
+    "message": "Åbn sidepanel for at starte",
+    "description": "Label for the start button"
+  },
+  "welcome_note_title": {
+    "message": "Velkommen til din nye notesbog!",
+    "description": "Title of the first welcoming note"
+  },
+  "welcome_note_content": {
+    "message": "<p>Dette er din første note. Du kan bruge Marginalia til at tage noter på enhver side.</p><p>Prøv at markere tekst på en webside og højreklikke for at tilføje en note.</p>",
+    "description": "Content of the first welcoming note"
+  }
+}

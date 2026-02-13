@@ -1,0 +1,201 @@
+{
+  "appName": { "message": "Marginalia", "description": "The name of the extension" },
+  "appDescription": {
+    "message": "Сохраняйте мысли, напоминания или контекст во время просмотра веб-страниц и находите их снова при возвращении.",
+    "description": "The description of the extension"
+  },
+  "contextMenu_addNote": {
+    "message": "Добавить новую заметку: \"%s\"",
+    "description": "Context menu item to add a new note from selection"
+  },
+  "scope_page": { "message": "Эта страница", "description": "Label for the page scope filter" },
+  "scope_site": { "message": "Этот сайт", "description": "Label for the site scope filter" },
+  "scope_global": { "message": "Везде", "description": "Label for the global scope filter" },
+  "search_placeholder": {
+    "message": "Поиск...",
+    "description": "Placeholder text for the search input"
+  },
+  "button_new": { "message": "Новая", "description": "Label for the new note button" },
+  "button_export": { "message": "Экспорт в CSV", "description": "Label for the export button" },
+  "no_notes": {
+    "message": "Заметки не найдены.",
+    "description": "Message displayed when the note list is empty"
+  },
+  "notes_count": {
+    "message": "$COUNT$ заметок",
+    "description": "Label showing the number of notes",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "delete_dialog_title": {
+    "message": "Удалить заметку?",
+    "description": "Title of the delete confirmation dialog"
+  },
+  "delete_dialog_content": {
+    "message": "Вы уверены, что хотите удалить заметку \"$TITLE$\"? Это действие нельзя отменить.",
+    "description": "Content of the delete confirmation dialog",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "button_cancel": { "message": "Отмена", "description": "Label for cancel button" },
+  "button_delete": { "message": "Удалить", "description": "Label for delete button" },
+  "tooltip_export": {
+    "message": "Экспортировать эти $COUNT$ заметок в CSV",
+    "description": "Tooltip for export button",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "tooltip_visit_url": {
+    "message": "Перейти по $URL$",
+    "description": "Tooltip for visiting the note's URL",
+    "placeholders": { "url": { "content": "$1" } }
+  },
+  "tooltip_delete": { "message": "Удалить", "description": "Tooltip for delete button" },
+  "status_saved": {
+    "message": "Сохранено локально",
+    "description": "Status message indicating note is saved"
+  },
+  "tooltip_last_modified": {
+    "message": "Последнее изменение: $DATE$",
+    "description": "Tooltip showing last modification date",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "tooltip_copy": {
+    "message": "Копировать в буфер обмена",
+    "description": "Tooltip for copy button"
+  },
+  "tooltip_email": { "message": "Отправить по почте", "description": "Tooltip for email button" },
+  "tooltip_print": { "message": "Печать заметки", "description": "Tooltip for print button" },
+  "tooltip_scope_page": {
+    "message": "Показать заметки для этой страницы",
+    "description": "Tooltip for page scope tab"
+  },
+  "tooltip_scope_site": {
+    "message": "Показать заметки для $DOMAIN$",
+    "description": "Tooltip for site scope tab",
+    "placeholders": { "domain": { "content": "$1" } }
+  },
+  "tooltip_scope_site_fallback": {
+    "message": "Показать заметки для этого домена",
+    "description": "Tooltip for site scope tab when domain is unknown"
+  },
+  "tooltip_scope_global": {
+    "message": "Показать все заметки отовсюду",
+    "description": "Tooltip for global scope tab"
+  },
+  "template_title_today": {
+    "message": "Заметка сегодня в $TIME$",
+    "description": "Template for today's note title",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "template_title_yesterday": {
+    "message": "Заметка вчера",
+    "description": "Template for yesterday's note title"
+  },
+  "template_title_last_week": {
+    "message": "Заметка за $DAYNAME$",
+    "description": "Template for note title from last week",
+    "placeholders": { "dayname": { "content": "$1" } }
+  },
+  "template_title_older": {
+    "message": "Заметка $DAY$ $MONTH$",
+    "description": "Template for older note title",
+    "placeholders": { "month": { "content": "$1" }, "day": { "content": "$2" } }
+  },
+  "template_title_older_year": {
+    "message": "Заметка $DAY$ $MONTH$ $YEAR$",
+    "description": "Template for older note title with year",
+    "placeholders": {
+      "month": { "content": "$1" },
+      "day": { "content": "$2" },
+      "year": { "content": "$3" }
+    }
+  },
+  "weekday_sunday": { "message": "Воскресенье", "description": "Day of the week: Sunday" },
+  "weekday_monday": { "message": "Понедельник", "description": "Day of the week: Monday" },
+  "weekday_tuesday": { "message": "Вторник", "description": "Day of the week: Tuesday" },
+  "weekday_wednesday": { "message": "Среда", "description": "Day of the week: Wednesday" },
+  "weekday_thursday": { "message": "Четверг", "description": "Day of the week: Thursday" },
+  "weekday_friday": { "message": "Пятница", "description": "Day of the week: Friday" },
+  "weekday_saturday": { "message": "Суббота", "description": "Day of the week: Saturday" },
+  "month_jan": { "message": "Янв", "description": "Month abbreviation: January" },
+  "month_feb": { "message": "Фев", "description": "Month abbreviation: February" },
+  "month_mar": { "message": "Мар", "description": "Month abbreviation: March" },
+  "month_apr": { "message": "Апр", "description": "Month abbreviation: April" },
+  "month_may": { "message": "Май", "description": "Month abbreviation: May" },
+  "month_jun": { "message": "Июн", "description": "Month abbreviation: June" },
+  "month_jul": { "message": "Июл", "description": "Month abbreviation: July" },
+  "month_aug": { "message": "Авг", "description": "Month abbreviation: August" },
+  "month_sep": { "message": "Сен", "description": "Month abbreviation: September" },
+  "month_oct": { "message": "Окт", "description": "Month abbreviation: October" },
+  "month_nov": { "message": "Ноя", "description": "Month abbreviation: November" },
+  "month_dec": { "message": "Дек", "description": "Month abbreviation: December" },
+  "export_header_title": { "message": "Заголовок", "description": "CSV Export Header: Title" },
+  "export_header_content": { "message": "Содержание", "description": "CSV Export Header: Content" },
+  "export_header_url": { "message": "URL", "description": "CSV Export Header: URL" },
+  "export_header_created_at": {
+    "message": "Создано",
+    "description": "CSV Export Header: Creation Date"
+  },
+  "export_header_updated_at": {
+    "message": "Обновлено",
+    "description": "CSV Export Header: Last Update Date"
+  },
+  "time_just_now": { "message": "Только что", "description": "Relative time: just now" },
+  "time_minute_ago": { "message": "1 минуту назад", "description": "Relative time: 1 minute ago" },
+  "time_minutes_ago": {
+    "message": "$COUNT$ минут назад",
+    "description": "Relative time: multiple minutes ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_hour_ago": { "message": "1 час назад", "description": "Relative time: 1 hour ago" },
+  "time_hours_ago": {
+    "message": "$COUNT$ часов назад",
+    "description": "Relative time: multiple hours ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_day_ago": { "message": "1 день назад", "description": "Relative time: 1 day ago" },
+  "time_days_ago": {
+    "message": "$COUNT$ дней назад",
+    "description": "Relative time: multiple days ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "select_note_to_view": {
+    "message": "Выберите заметку для просмотра",
+    "description": "Message displayed when no note is selected"
+  },
+  "label_scope": { "message": "ОБЛАСТЬ:", "description": "Label for the current scope indicator" },
+  "welcome_title": {
+    "message": "Добро пожаловать в Marginalia",
+    "description": "Title of the welcome page"
+  },
+  "welcome_description": {
+    "message": "Спасибо за установку Marginalia. Ваш новый помощник для заметок во время веб-серфинга.",
+    "description": "Description on the welcome page"
+  },
+  "welcome_feature_context_title": {
+    "message": "Контекстные заметки",
+    "description": "Title of the contextual notes feature"
+  },
+  "welcome_feature_context_desc": {
+    "message": "Делайте заметки, привязанные к конкретным страницам или доменам, и находите их снова при возвращении.",
+    "description": "Description of the contextual notes feature"
+  },
+  "welcome_feature_privacy_title": {
+    "message": "Приватность прежде всего",
+    "description": "Title of the privacy feature"
+  },
+  "welcome_feature_privacy_desc": {
+    "message": "Ваши заметки хранятся локально в браузере. Данные не покидают ваше устройство.",
+    "description": "Description of the privacy feature"
+  },
+  "welcome_button_start": {
+    "message": "Откройте боковую панель, чтобы начать",
+    "description": "Label for the start button"
+  },
+  "welcome_note_title": {
+    "message": "Добро пожаловать в ваш новый блокнот!",
+    "description": "Title of the first welcoming note"
+  },
+  "welcome_note_content": {
+    "message": "<p>Это ваша первая заметка. Вы можете использовать Marginalia для создания заметок на любой странице.</p><p>Попробуйте выделить текст на веб-странице и щелкнуть правой кнопкой мыши, чтобы добавить заметку.</p>",
+    "description": "Content of the first welcoming note"
+  }
+}

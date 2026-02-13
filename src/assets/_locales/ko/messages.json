@@ -1,0 +1,198 @@
+{
+  "appName": { "message": "Marginalia", "description": "The name of the extension" },
+  "appDescription": {
+    "message": "브라우징 중에 생각, 알림 또는 맥락을 저장하고, 돌아왔을 때 다시 찾으세요.",
+    "description": "The description of the extension"
+  },
+  "contextMenu_addNote": {
+    "message": "새 노트 추가: \"%s\"",
+    "description": "Context menu item to add a new note from selection"
+  },
+  "scope_page": { "message": "현재 페이지", "description": "Label for the page scope filter" },
+  "scope_site": { "message": "현재 사이트", "description": "Label for the site scope filter" },
+  "scope_global": { "message": "모든 곳", "description": "Label for the global scope filter" },
+  "search_placeholder": {
+    "message": "검색...",
+    "description": "Placeholder text for the search input"
+  },
+  "button_new": { "message": "새로 만들기", "description": "Label for the new note button" },
+  "button_export": { "message": "CSV로 내보내기", "description": "Label for the export button" },
+  "no_notes": {
+    "message": "노트를 찾을 수 없습니다.",
+    "description": "Message displayed when the note list is empty"
+  },
+  "notes_count": {
+    "message": "$COUNT$개의 노트",
+    "description": "Label showing the number of notes",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "delete_dialog_title": {
+    "message": "노트를 삭제하시겠습니까?",
+    "description": "Title of the delete confirmation dialog"
+  },
+  "delete_dialog_content": {
+    "message": "\"$TITLE$\" 노트를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
+    "description": "Content of the delete confirmation dialog",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "button_cancel": { "message": "취소", "description": "Label for cancel button" },
+  "button_delete": { "message": "삭제", "description": "Label for delete button" },
+  "tooltip_export": {
+    "message": "이 $COUNT$개의 노트를 CSV로 내보내기",
+    "description": "Tooltip for export button",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "tooltip_visit_url": {
+    "message": "$URL$ 방문",
+    "description": "Tooltip for visiting the note's URL",
+    "placeholders": { "url": { "content": "$1" } }
+  },
+  "tooltip_delete": { "message": "삭제", "description": "Tooltip for delete button" },
+  "status_saved": {
+    "message": "로컬에 저장됨",
+    "description": "Status message indicating note is saved"
+  },
+  "tooltip_last_modified": {
+    "message": "마지막 수정: $DATE$",
+    "description": "Tooltip showing last modification date",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "tooltip_copy": { "message": "클립보드에 복사", "description": "Tooltip for copy button" },
+  "tooltip_email": { "message": "이메일로 보내기", "description": "Tooltip for email button" },
+  "tooltip_print": { "message": "노트 인쇄", "description": "Tooltip for print button" },
+  "tooltip_scope_page": {
+    "message": "이 페이지의 노트 보기",
+    "description": "Tooltip for page scope tab"
+  },
+  "tooltip_scope_site": {
+    "message": "$DOMAIN$의 노트 보기",
+    "description": "Tooltip for site scope tab",
+    "placeholders": { "domain": { "content": "$1" } }
+  },
+  "tooltip_scope_site_fallback": {
+    "message": "이 도메인의 노트 보기",
+    "description": "Tooltip for site scope tab when domain is unknown"
+  },
+  "tooltip_scope_global": {
+    "message": "모든 곳의 노트 보기",
+    "description": "Tooltip for global scope tab"
+  },
+  "template_title_today": {
+    "message": "오늘의 노트 $TIME$",
+    "description": "Template for today's note title",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "template_title_yesterday": {
+    "message": "어제 노트",
+    "description": "Template for yesterday's note title"
+  },
+  "template_title_last_week": {
+    "message": "$DAYNAME$ 노트",
+    "description": "Template for note title from last week",
+    "placeholders": { "dayname": { "content": "$1" } }
+  },
+  "template_title_older": {
+    "message": "$MONTH$ $DAY$일 노트",
+    "description": "Template for older note title",
+    "placeholders": { "month": { "content": "$1" }, "day": { "content": "$2" } }
+  },
+  "template_title_older_year": {
+    "message": "$YEAR$년 $MONTH$ $DAY$일 노트",
+    "description": "Template for older note title with year",
+    "placeholders": {
+      "month": { "content": "$1" },
+      "day": { "content": "$2" },
+      "year": { "content": "$3" }
+    }
+  },
+  "weekday_sunday": { "message": "일요일", "description": "Day of the week: Sunday" },
+  "weekday_monday": { "message": "월요일", "description": "Day of the week: Monday" },
+  "weekday_tuesday": { "message": "화요일", "description": "Day of the week: Tuesday" },
+  "weekday_wednesday": { "message": "수요일", "description": "Day of the week: Wednesday" },
+  "weekday_thursday": { "message": "목요일", "description": "Day of the week: Thursday" },
+  "weekday_friday": { "message": "금요일", "description": "Day of the week: Friday" },
+  "weekday_saturday": { "message": "토요일", "description": "Day of the week: Saturday" },
+  "month_jan": { "message": "1월", "description": "Month abbreviation: January" },
+  "month_feb": { "message": "2월", "description": "Month abbreviation: February" },
+  "month_mar": { "message": "3월", "description": "Month abbreviation: March" },
+  "month_apr": { "message": "4월", "description": "Month abbreviation: April" },
+  "month_may": { "message": "5월", "description": "Month abbreviation: May" },
+  "month_jun": { "message": "6월", "description": "Month abbreviation: June" },
+  "month_jul": { "message": "7월", "description": "Month abbreviation: July" },
+  "month_aug": { "message": "8월", "description": "Month abbreviation: August" },
+  "month_sep": { "message": "9월", "description": "Month abbreviation: September" },
+  "month_oct": { "message": "10월", "description": "Month abbreviation: October" },
+  "month_nov": { "message": "11월", "description": "Month abbreviation: November" },
+  "month_dec": { "message": "12월", "description": "Month abbreviation: December" },
+  "export_header_title": { "message": "제목", "description": "CSV Export Header: Title" },
+  "export_header_content": { "message": "내용", "description": "CSV Export Header: Content" },
+  "export_header_url": { "message": "URL", "description": "CSV Export Header: URL" },
+  "export_header_created_at": {
+    "message": "작성일",
+    "description": "CSV Export Header: Creation Date"
+  },
+  "export_header_updated_at": {
+    "message": "수정일",
+    "description": "CSV Export Header: Last Update Date"
+  },
+  "time_just_now": { "message": "방금 전", "description": "Relative time: just now" },
+  "time_minute_ago": { "message": "1분 전", "description": "Relative time: 1 minute ago" },
+  "time_minutes_ago": {
+    "message": "$COUNT$분 전",
+    "description": "Relative time: multiple minutes ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_hour_ago": { "message": "1시간 전", "description": "Relative time: 1 hour ago" },
+  "time_hours_ago": {
+    "message": "$COUNT$시간 전",
+    "description": "Relative time: multiple hours ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_day_ago": { "message": "1일 전", "description": "Relative time: 1 day ago" },
+  "time_days_ago": {
+    "message": "$COUNT$일 전",
+    "description": "Relative time: multiple days ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "select_note_to_view": {
+    "message": "볼 노트를 선택하세요",
+    "description": "Message displayed when no note is selected"
+  },
+  "label_scope": { "message": "범위:", "description": "Label for the current scope indicator" },
+  "welcome_title": {
+    "message": "Marginalia에 오신 것을 환영합니다",
+    "description": "Title of the welcome page"
+  },
+  "welcome_description": {
+    "message": "Marginalia를 설치해 주셔서 감사합니다. 브라우징 중 노트를 작성하는 새로운 동반자입니다.",
+    "description": "Description on the welcome page"
+  },
+  "welcome_feature_context_title": {
+    "message": "맥락 노트",
+    "description": "Title of the contextual notes feature"
+  },
+  "welcome_feature_context_desc": {
+    "message": "특정 페이지나 도메인에 연결된 노트를 작성하고, 다시 찾아보세요.",
+    "description": "Description of the contextual notes feature"
+  },
+  "welcome_feature_privacy_title": {
+    "message": "개인정보 보호 우선",
+    "description": "Title of the privacy feature"
+  },
+  "welcome_feature_privacy_desc": {
+    "message": "노트는 브라우저에 로컬로 저장됩니다. 어떤 데이터도 기기를 떠나지 않습니다.",
+    "description": "Description of the privacy feature"
+  },
+  "welcome_button_start": {
+    "message": "사이드 패널을 열어 시작하기",
+    "description": "Label for the start button"
+  },
+  "welcome_note_title": {
+    "message": "새 노트에 오신 것을 환영합니다!",
+    "description": "Title of the first welcoming note"
+  },
+  "welcome_note_content": {
+    "message": "<p>이것은 첫 번째 노트입니다. Marginalia를 사용하여 어떤 페이지에서든 노트를 작성할 수 있습니다.</p><p>웹 페이지에서 텍스트를 선택하고 마우스 오른쪽 버튼을 클릭하여 노트를 추가해 보세요.</p>",
+    "description": "Content of the first welcoming note"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "appName": { "message": "Marginalia", "description": "The name of the extension" },
+  "appDescription": {
+    "message": "在瀏覽時儲存想法、提醒或相關內容，並在您返回時輕鬆找回。",
+    "description": "The description of the extension"
+  },
+  "contextMenu_addNote": {
+    "message": "新增筆記：「%s」",
+    "description": "Context menu item to add a new note from selection"
+  },
+  "scope_page": { "message": "此頁面", "description": "Label for the page scope filter" },
+  "scope_site": { "message": "此網站", "description": "Label for the site scope filter" },
+  "scope_global": { "message": "所有地方", "description": "Label for the global scope filter" },
+  "search_placeholder": {
+    "message": "搜尋...",
+    "description": "Placeholder text for the search input"
+  },
+  "button_new": { "message": "新增", "description": "Label for the new note button" },
+  "button_export": { "message": "匯出為 CSV", "description": "Label for the export button" },
+  "no_notes": {
+    "message": "找不到筆記。",
+    "description": "Message displayed when the note list is empty"
+  },
+  "notes_count": {
+    "message": "$COUNT$ 則筆記",
+    "description": "Label showing the number of notes",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "delete_dialog_title": {
+    "message": "刪除筆記？",
+    "description": "Title of the delete confirmation dialog"
+  },
+  "delete_dialog_content": {
+    "message": "您確定要刪除筆記「$TITLE$」嗎？此動作無法復原。",
+    "description": "Content of the delete confirmation dialog",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "button_cancel": { "message": "取消", "description": "Label for cancel button" },
+  "button_delete": { "message": "刪除", "description": "Label for delete button" },
+  "tooltip_export": {
+    "message": "匯出這 $COUNT$ 則筆記為 CSV",
+    "description": "Tooltip for export button",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "tooltip_visit_url": {
+    "message": "造訪 $URL$",
+    "description": "Tooltip for visiting the note's URL",
+    "placeholders": { "url": { "content": "$1" } }
+  },
+  "tooltip_delete": { "message": "刪除", "description": "Tooltip for delete button" },
+  "status_saved": {
+    "message": "已儲存至本機",
+    "description": "Status message indicating note is saved"
+  },
+  "tooltip_last_modified": {
+    "message": "最後修改：$DATE$",
+    "description": "Tooltip showing last modification date",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "tooltip_copy": { "message": "複製到剪貼簿", "description": "Tooltip for copy button" },
+  "tooltip_email": { "message": "透過電子郵件發送", "description": "Tooltip for email button" },
+  "tooltip_print": { "message": "列印筆記", "description": "Tooltip for print button" },
+  "tooltip_scope_page": {
+    "message": "顯示此頁面的筆記",
+    "description": "Tooltip for page scope tab"
+  },
+  "tooltip_scope_site": {
+    "message": "顯示 $DOMAIN$ 的筆記",
+    "description": "Tooltip for site scope tab",
+    "placeholders": { "domain": { "content": "$1" } }
+  },
+  "tooltip_scope_site_fallback": {
+    "message": "顯示此網域的筆記",
+    "description": "Tooltip for site scope tab when domain is unknown"
+  },
+  "tooltip_scope_global": {
+    "message": "顯示所有地方的筆記",
+    "description": "Tooltip for global scope tab"
+  },
+  "template_title_today": {
+    "message": "今日筆記 $TIME$",
+    "description": "Template for today's note title",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "template_title_yesterday": {
+    "message": "昨日筆記",
+    "description": "Template for yesterday's note title"
+  },
+  "template_title_last_week": {
+    "message": "$DAYNAME$ 筆記",
+    "description": "Template for note title from last week",
+    "placeholders": { "dayname": { "content": "$1" } }
+  },
+  "template_title_older": {
+    "message": "$MONTH$$DAY$日 筆記",
+    "description": "Template for older note title",
+    "placeholders": { "month": { "content": "$1" }, "day": { "content": "$2" } }
+  },
+  "template_title_older_year": {
+    "message": "$YEAR$年$MONTH$$DAY$日 筆記",
+    "description": "Template for older note title with year",
+    "placeholders": {
+      "month": { "content": "$1" },
+      "day": { "content": "$2" },
+      "year": { "content": "$3" }
+    }
+  },
+  "weekday_sunday": { "message": "週日", "description": "Day of the week: Sunday" },
+  "weekday_monday": { "message": "週一", "description": "Day of the week: Monday" },
+  "weekday_tuesday": { "message": "週二", "description": "Day of the week: Tuesday" },
+  "weekday_wednesday": { "message": "週三", "description": "Day of the week: Wednesday" },
+  "weekday_thursday": { "message": "週四", "description": "Day of the week: Thursday" },
+  "weekday_friday": { "message": "週五", "description": "Day of the week: Friday" },
+  "weekday_saturday": { "message": "週六", "description": "Day of the week: Saturday" },
+  "month_jan": { "message": "1月", "description": "Month abbreviation: January" },
+  "month_feb": { "message": "2月", "description": "Month abbreviation: February" },
+  "month_mar": { "message": "3月", "description": "Month abbreviation: March" },
+  "month_apr": { "message": "4月", "description": "Month abbreviation: April" },
+  "month_may": { "message": "5月", "description": "Month abbreviation: May" },
+  "month_jun": { "message": "6月", "description": "Month abbreviation: June" },
+  "month_jul": { "message": "7月", "description": "Month abbreviation: July" },
+  "month_aug": { "message": "8月", "description": "Month abbreviation: August" },
+  "month_sep": { "message": "9月", "description": "Month abbreviation: September" },
+  "month_oct": { "message": "10月", "description": "Month abbreviation: October" },
+  "month_nov": { "message": "11月", "description": "Month abbreviation: November" },
+  "month_dec": { "message": "12月", "description": "Month abbreviation: December" },
+  "export_header_title": { "message": "標題", "description": "CSV Export Header: Title" },
+  "export_header_content": { "message": "內容", "description": "CSV Export Header: Content" },
+  "export_header_url": { "message": "連結", "description": "CSV Export Header: URL" },
+  "export_header_created_at": {
+    "message": "建立時間",
+    "description": "CSV Export Header: Creation Date"
+  },
+  "export_header_updated_at": {
+    "message": "更新時間",
+    "description": "CSV Export Header: Last Update Date"
+  },
+  "time_just_now": { "message": "剛剛", "description": "Relative time: just now" },
+  "time_minute_ago": { "message": "1 分鐘前", "description": "Relative time: 1 minute ago" },
+  "time_minutes_ago": {
+    "message": "$COUNT$ 分鐘前",
+    "description": "Relative time: multiple minutes ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_hour_ago": { "message": "1 小時前", "description": "Relative time: 1 hour ago" },
+  "time_hours_ago": {
+    "message": "$COUNT$ 小時前",
+    "description": "Relative time: multiple hours ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_day_ago": { "message": "1 天前", "description": "Relative time: 1 day ago" },
+  "time_days_ago": {
+    "message": "$COUNT$ 天前",
+    "description": "Relative time: multiple days ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "select_note_to_view": {
+    "message": "選擇一則筆記以檢視",
+    "description": "Message displayed when no note is selected"
+  },
+  "label_scope": { "message": "範圍：", "description": "Label for the current scope indicator" },
+  "welcome_title": { "message": "歡迎使用 Marginalia", "description": "Title of the welcome page" },
+  "welcome_description": {
+    "message": "感謝安裝 Marginalia。您的新網頁瀏覽筆記助手。",
+    "description": "Description on the welcome page"
+  },
+  "welcome_feature_context_title": {
+    "message": "上下文筆記",
+    "description": "Title of the contextual notes feature"
+  },
+  "welcome_feature_context_desc": {
+    "message": "記錄與特定頁面或網域關聯的筆記，並在返回時再次找到它們。",
+    "description": "Description of the contextual notes feature"
+  },
+  "welcome_feature_privacy_title": {
+    "message": "隱私優先",
+    "description": "Title of the privacy feature"
+  },
+  "welcome_feature_privacy_desc": {
+    "message": "您的筆記儲存在瀏覽器的本機。沒有任何資料會離開您的裝置。",
+    "description": "Description of the privacy feature"
+  },
+  "welcome_button_start": {
+    "message": "打開側邊欄以開始",
+    "description": "Label for the start button"
+  },
+  "welcome_note_title": {
+    "message": "歡迎使用您的新筆記本！",
+    "description": "Title of the first welcoming note"
+  },
+  "welcome_note_content": {
+    "message": "<p>這是您的第一則筆記。您可以使用 Marginalia 在任何頁面上做筆記。</p><p>嘗試在網頁上選取文字並按右鍵以新增筆記。</p>",
+    "description": "Content of the first welcoming note"
+  }
+}

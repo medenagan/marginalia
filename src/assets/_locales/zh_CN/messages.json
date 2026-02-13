@@ -1,0 +1,195 @@
+{
+  "appName": { "message": "Marginalia", "description": "The name of the extension" },
+  "appDescription": {
+    "message": "在浏览时保存想法、提醒或相关内容，并在您返回时轻松找回。",
+    "description": "The description of the extension"
+  },
+  "contextMenu_addNote": {
+    "message": "添加新笔记：“%s”",
+    "description": "Context menu item to add a new note from selection"
+  },
+  "scope_page": { "message": "当前页面", "description": "Label for the page scope filter" },
+  "scope_site": { "message": "当前网站", "description": "Label for the site scope filter" },
+  "scope_global": { "message": "所有地方", "description": "Label for the global scope filter" },
+  "search_placeholder": {
+    "message": "搜索...",
+    "description": "Placeholder text for the search input"
+  },
+  "button_new": { "message": "新建", "description": "Label for the new note button" },
+  "button_export": { "message": "导出为 CSV", "description": "Label for the export button" },
+  "no_notes": {
+    "message": "未找到笔记。",
+    "description": "Message displayed when the note list is empty"
+  },
+  "notes_count": {
+    "message": "$COUNT$ 条笔记",
+    "description": "Label showing the number of notes",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "delete_dialog_title": {
+    "message": "删除笔记？",
+    "description": "Title of the delete confirmation dialog"
+  },
+  "delete_dialog_content": {
+    "message": "您确定要删除笔记“$TITLE$”吗？此操作无法撤销。",
+    "description": "Content of the delete confirmation dialog",
+    "placeholders": { "title": { "content": "$1" } }
+  },
+  "button_cancel": { "message": "取消", "description": "Label for cancel button" },
+  "button_delete": { "message": "删除", "description": "Label for delete button" },
+  "tooltip_export": {
+    "message": "导出这 $COUNT$ 条笔记为 CSV",
+    "description": "Tooltip for export button",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "tooltip_visit_url": {
+    "message": "访问 $URL$",
+    "description": "Tooltip for visiting the note's URL",
+    "placeholders": { "url": { "content": "$1" } }
+  },
+  "tooltip_delete": { "message": "删除", "description": "Tooltip for delete button" },
+  "status_saved": {
+    "message": "已保存到本地",
+    "description": "Status message indicating note is saved"
+  },
+  "tooltip_last_modified": {
+    "message": "最后修改：$DATE$",
+    "description": "Tooltip showing last modification date",
+    "placeholders": { "date": { "content": "$1" } }
+  },
+  "tooltip_copy": { "message": "复制到剪贴板", "description": "Tooltip for copy button" },
+  "tooltip_email": { "message": "通过邮件发送", "description": "Tooltip for email button" },
+  "tooltip_print": { "message": "打印笔记", "description": "Tooltip for print button" },
+  "tooltip_scope_page": {
+    "message": "显示当前页面的笔记",
+    "description": "Tooltip for page scope tab"
+  },
+  "tooltip_scope_site": {
+    "message": "显示 $DOMAIN$ 的笔记",
+    "description": "Tooltip for site scope tab",
+    "placeholders": { "domain": { "content": "$1" } }
+  },
+  "tooltip_scope_site_fallback": {
+    "message": "显示当前域名的笔记",
+    "description": "Tooltip for site scope tab when domain is unknown"
+  },
+  "tooltip_scope_global": {
+    "message": "显示所有地方的笔记",
+    "description": "Tooltip for global scope tab"
+  },
+  "template_title_today": {
+    "message": "今日笔记 $TIME$",
+    "description": "Template for today's note title",
+    "placeholders": { "time": { "content": "$1" } }
+  },
+  "template_title_yesterday": {
+    "message": "昨日笔记",
+    "description": "Template for yesterday's note title"
+  },
+  "template_title_last_week": {
+    "message": "$DAYNAME$ 笔记",
+    "description": "Template for note title from last week",
+    "placeholders": { "dayname": { "content": "$1" } }
+  },
+  "template_title_older": {
+    "message": "$MONTH$$DAY$日 笔记",
+    "description": "Template for older note title",
+    "placeholders": { "month": { "content": "$1" }, "day": { "content": "$2" } }
+  },
+  "template_title_older_year": {
+    "message": "$YEAR$年$MONTH$$DAY$日 笔记",
+    "description": "Template for older note title with year",
+    "placeholders": {
+      "month": { "content": "$1" },
+      "day": { "content": "$2" },
+      "year": { "content": "$3" }
+    }
+  },
+  "weekday_sunday": { "message": "周日", "description": "Day of the week: Sunday" },
+  "weekday_monday": { "message": "周一", "description": "Day of the week: Monday" },
+  "weekday_tuesday": { "message": "周二", "description": "Day of the week: Tuesday" },
+  "weekday_wednesday": { "message": "周三", "description": "Day of the week: Wednesday" },
+  "weekday_thursday": { "message": "周四", "description": "Day of the week: Thursday" },
+  "weekday_friday": { "message": "周五", "description": "Day of the week: Friday" },
+  "weekday_saturday": { "message": "周六", "description": "Day of the week: Saturday" },
+  "month_jan": { "message": "1月", "description": "Month abbreviation: January" },
+  "month_feb": { "message": "2月", "description": "Month abbreviation: February" },
+  "month_mar": { "message": "3月", "description": "Month abbreviation: March" },
+  "month_apr": { "message": "4月", "description": "Month abbreviation: April" },
+  "month_may": { "message": "5月", "description": "Month abbreviation: May" },
+  "month_jun": { "message": "6月", "description": "Month abbreviation: June" },
+  "month_jul": { "message": "7月", "description": "Month abbreviation: July" },
+  "month_aug": { "message": "8月", "description": "Month abbreviation: August" },
+  "month_sep": { "message": "9月", "description": "Month abbreviation: September" },
+  "month_oct": { "message": "10月", "description": "Month abbreviation: October" },
+  "month_nov": { "message": "11月", "description": "Month abbreviation: November" },
+  "month_dec": { "message": "12月", "description": "Month abbreviation: December" },
+  "export_header_title": { "message": "标题", "description": "CSV Export Header: Title" },
+  "export_header_content": { "message": "内容", "description": "CSV Export Header: Content" },
+  "export_header_url": { "message": "链接", "description": "CSV Export Header: URL" },
+  "export_header_created_at": {
+    "message": "创建时间",
+    "description": "CSV Export Header: Creation Date"
+  },
+  "export_header_updated_at": {
+    "message": "更新时间",
+    "description": "CSV Export Header: Last Update Date"
+  },
+  "time_just_now": { "message": "刚刚", "description": "Relative time: just now" },
+  "time_minute_ago": { "message": "1 分钟前", "description": "Relative time: 1 minute ago" },
+  "time_minutes_ago": {
+    "message": "$COUNT$ 分钟前",
+    "description": "Relative time: multiple minutes ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_hour_ago": { "message": "1 小时前", "description": "Relative time: 1 hour ago" },
+  "time_hours_ago": {
+    "message": "$COUNT$ 小时前",
+    "description": "Relative time: multiple hours ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_day_ago": { "message": "1 天前", "description": "Relative time: 1 day ago" },
+  "time_days_ago": {
+    "message": "$COUNT$ 天前",
+    "description": "Relative time: multiple days ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "select_note_to_view": {
+    "message": "选择一条笔记以查看",
+    "description": "Message displayed when no note is selected"
+  },
+  "label_scope": { "message": "范围：", "description": "Label for the current scope indicator" },
+  "welcome_title": { "message": "欢迎使用 Marginalia", "description": "Title of the welcome page" },
+  "welcome_description": {
+    "message": "感谢安装 Marginalia。您的新网页浏览笔记助手。",
+    "description": "Description on the welcome page"
+  },
+  "welcome_feature_context_title": {
+    "message": "上下文笔记",
+    "description": "Title of the contextual notes feature"
+  },
+  "welcome_feature_context_desc": {
+    "message": "记录与特定页面或域名关联的笔记，并在返回时再次找到它们。",
+    "description": "Description of the contextual notes feature"
+  },
+  "welcome_feature_privacy_title": {
+    "message": "隐私优先",
+    "description": "Title of the privacy feature"
+  },
+  "welcome_feature_privacy_desc": {
+    "message": "您的笔记存储在浏览器的本地。没有任何数据会离开您的设备。",
+    "description": "Description of the privacy feature"
+  },
+  "welcome_button_start": {
+    "message": "打开侧边栏以开始",
+    "description": "Label for the start button"
+  },
+  "welcome_note_title": {
+    "message": "欢迎使用您的新笔记本！",
+    "description": "Title of the first welcoming note"
+  },
+  "welcome_note_content": {
+    "message": "<p>这是您的第一条笔记。您可以使用 Marginalia 在任何页面上做笔记。</p><p>尝试在网页上选择文本并右键单击以添加笔记。</p>",
+    "description": "Content of the first welcoming note"
+  }
+}
