@@ -13,13 +13,22 @@ export const getRelativeTime = (timestamp: number): string => {
   const days = Math.floor(hours / 24);
 
   if (seconds < 60) {
-    return 'Just now';
+    return chrome.i18n.getMessage('time_just_now');
   } else if (minutes < 60) {
-    return `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
+    if (minutes === 1) {
+      return chrome.i18n.getMessage('time_minute_ago');
+    }
+    return chrome.i18n.getMessage('time_minutes_ago', [minutes.toString()]);
   } else if (hours < 24) {
-    return `${hours} hour${hours === 1 ? '' : 's'} ago`;
+    if (hours === 1) {
+      return chrome.i18n.getMessage('time_hour_ago');
+    }
+    return chrome.i18n.getMessage('time_hours_ago', [hours.toString()]);
   } else if (days < 7) {
-    return `${days} day${days === 1 ? '' : 's'} ago`;
+    if (days === 1) {
+      return chrome.i18n.getMessage('time_day_ago');
+    }
+    return chrome.i18n.getMessage('time_days_ago', [days.toString()]);
   } else {
     return new Date(timestamp).toLocaleDateString();
   }

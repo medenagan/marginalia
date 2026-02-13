@@ -165,9 +165,9 @@ export const NotesLayout: React.FC = () => {
                 onDelete={() => handleDeleteNote(selectedNote.id)}
              />
           ) : (
-             <Box sx={{ p: 3, textAlign: 'center', color: 'text.secondary', mt: 5 }}>
-                <Typography>Select a note to view</Typography>
-             </Box>
+            <Box sx={{ p: 3, textAlign: 'center', color: 'text.secondary', mt: 5 }}>
+                <Typography>{chrome.i18n.getMessage('select_note_to_view')}</Typography>
+            </Box>
           )}
         </Box>
       </Box>
@@ -175,7 +175,7 @@ export const NotesLayout: React.FC = () => {
       <Divider />
       <Box sx={{ p: 0.5, px: 2, display: 'flex', justifyContent: 'space-between', bgcolor: '#f0f0f0' }}>
         <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 'bold' }}>
-          SCOPE: {currentScope.toUpperCase()}
+          {chrome.i18n.getMessage('label_scope')} {currentScope.toUpperCase()}
         </Typography>
         <Typography variant="caption" color="text.secondary">
           {chrome.runtime?.id === 'mock-extension-id' ? 'v0 mock' : ''}
@@ -185,8 +185,7 @@ export const NotesLayout: React.FC = () => {
         open={!!deletingNoteId}
         onClose={cancelDelete}
         onConfirm={confirmDelete}
-        title="Delete Note"
-        content={`Are you sure you want to delete the note "${deletingNoteId ? getNoteDisplayTitle(notes[deletingNoteId]) : ''}"? This action cannot be undone.`}
+        noteTitle={deletingNoteId ? getNoteDisplayTitle(notes[deletingNoteId]) : ''}
       />
     </Box>
   );

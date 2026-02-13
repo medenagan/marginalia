@@ -49,6 +49,7 @@ module.exports = {
       patterns: [
         { from: 'src/assets/manifest.json', to: 'manifest.json' },
         { from: 'src/assets/icons', to: 'icons' },
+        { from: 'src/assets/_locales', to: '_locales' },
         { from: 'src/sidepanel/index.html', to: 'sidepanel.html' },
       ],
     }),

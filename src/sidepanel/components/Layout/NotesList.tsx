@@ -14,12 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DownloadIcon from '@mui/icons-material/Download';
 import { NoteIdentifier, Scope, Note } from '../../../types/note';
 import { exportToCsv } from '../../../utils/export';
-
-const scopeLabels: Record<Scope, string> = {
-  [Scope.Page]: 'This page',
-  [Scope.Domain]: 'This site',
-  [Scope.Global]: 'Everywhere',
-};
+import { useTranslation } from '../../hooks/useTranslation';
 
 interface NotesListProps {
   notes: Note[];
@@ -57,8 +52,23 @@ export const NotesList: React.FC<NotesListProps> = ({
   currentScope,
   isLoading = false,
 }) => {
+  const { t } = useTranslation();
+
   const handleExport = () => {
     exportToCsv(notes);
+  };
+
+  const getScopeLabel = (scope: Scope): string => {
+    switch (scope) {
+      case Scope.Page:
+        return t('scope_page');
+      case Scope.Domain:
+        return t('scope_site');
+      case Scope.Global:
+        return t('scope_global');
+      default:
+        return '';
+    }
   };
 
   return (
@@ -74,14 +84,14 @@ export const NotesList: React.FC<NotesListProps> = ({
         }}
       >
         <Chip
-          label={scopeLabels[currentScope]}
+          label={getScopeLabel(currentScope)}
           size="small"
           color="primary"
           variant="outlined"
           sx={{ fontWeight: 500 }}
         />
         <Typography variant="caption" color="text.secondary">
-          {notes.length} notes
+          {t('notes_count', notes.length.toString())}
         </Typography>
       </Box>
 
@@ -99,7 +109,7 @@ export const NotesList: React.FC<NotesListProps> = ({
         ) : notes.length === 0 ? (
           <Box sx={{ p: 3, textAlign: 'center' }}>
             <Typography variant="body2" color="text.secondary">
-              No notes found.
+              {t('no_notes')}
             </Typography>
           </Box>
         ) : (
@@ -121,7 +131,7 @@ export const NotesList: React.FC<NotesListProps> = ({
 
       {/* Bottom Add Button */}
       <Box sx={{ p: 2, borderTop: '1px solid rgba(0,0,0,0.08)' }}>
-        <Tooltip title={notes.length === 0 ? "No notes to export" : `Export these ${notes.length} notes to CSV`}>
+        <Tooltip title={notes.length === 0 ? t('tooltip_no_notes_export') : t('tooltip_export', notes.length.toString())}>
           <span>
             <Button
               fullWidth
@@ -130,7 +140,7 @@ export const NotesList: React.FC<NotesListProps> = ({
               onClick={handleExport}
               disabled={notes.length === 0}
             >
-              Export notes to CSV
+              {t('button_export')}
             </Button>
           </span>
         </Tooltip>

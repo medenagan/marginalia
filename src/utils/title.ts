@@ -1,25 +1,28 @@
 import { Note } from '../types/note';
 
-const TEMPLATES = {
-  TODAY: "Today's note at {time}",
-  YESTERDAY: 'Yesterday Note',
-  LAST_WEEK: '{dayName} Note',
-  OLDER: 'Note {month} {day}',
-  OLDER_WITH_YEAR: 'Note {month} {day} {year}',
+const getLocalizedWeekday = (date: Date): string => {
+  const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+  return chrome.i18n.getMessage(`weekday_${days[date.getDay()]}`);
 };
 
-/**
- * Helper to replace variables in a template string.
- */
-const formatTitle = (template: string, variables: Record<string, string>): string => {
-  return template.replace(/{(\w+)}/g, (_, key) => variables[key] || `{${key}}`);
+const getLocalizedMonth = (date: Date): string => {
+  const months = [
+    'jan',
+    'feb',
+    'mar',
+    'apr',
+    'may',
+    'jun',
+    'jul',
+    'aug',
+    'sep',
+    'oct',
+    'nov',
+    'dec',
+  ];
+  return chrome.i18n.getMessage(`month_${months[date.getMonth()]}`);
 };
 
-/**
- * Generates a display title for a note based on its creation/update time.
- * @param note - The note object
- * @returns A string to be displayed as the title
- */
 export const getNoteDisplayTitle = (note: Note): string => {
   const title = note.title?.trim();
   if (title.length > 0) {
@@ -42,30 +45,28 @@ export const getNoteDisplayTitle = (note: Note): string => {
       hour: '2-digit',
       minute: '2-digit',
     }).format(noteDate);
-    return formatTitle(TEMPLATES.TODAY, { time });
+    return chrome.i18n.getMessage('template_title_today', [time]);
   }
 
   // Yesterday
   if (diffDays === 1) {
-    return TEMPLATES.YESTERDAY;
+    return chrome.i18n.getMessage('template_title_yesterday');
   }
 
   // Last 6 days
   if (diffDays > 1 && diffDays < 7) {
-    const dayName = new Intl.DateTimeFormat('default', {
-      weekday: 'long',
-    }).format(noteDate);
-    return formatTitle(TEMPLATES.LAST_WEEK, { dayName });
+    const dayName = getLocalizedWeekday(noteDate);
+    return chrome.i18n.getMessage('template_title_last_week', [dayName]);
   }
 
   // Older
-  const day = new Intl.DateTimeFormat('default', { day: 'numeric' }).format(noteDate);
-  const month = new Intl.DateTimeFormat('default', { month: 'short' }).format(noteDate);
+  const day = noteDate.getDate().toString();
+  const month = getLocalizedMonth(noteDate);
   const year = noteDate.getFullYear().toString();
 
   if (noteDate.getFullYear() !== now.getFullYear()) {
-    return formatTitle(TEMPLATES.OLDER_WITH_YEAR, { day, month, year });
+    return chrome.i18n.getMessage('template_title_older_year', [month, day, year]);
   }
 
-  return formatTitle(TEMPLATES.OLDER, { day, month });
+  return chrome.i18n.getMessage('template_title_older', [month, day]);
 };

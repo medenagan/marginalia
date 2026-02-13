@@ -12,6 +12,7 @@ import { Note } from '../../../types/note';
 import { MessageType } from '../../../types/messages';
 import { getNoteDisplayTitle } from '../../../utils/title';
 import { AlternateEmail } from '@mui/icons-material';
+import { useTranslation } from '../../hooks/useTranslation';
 interface NoteHeaderProps {
   note: Note;
   onTitleChange: (newTitle: string) => void;
@@ -25,6 +26,8 @@ export const NoteHeader: React.FC<NoteHeaderProps> = ({
   onCopy,
   onDelete,
 }) => {
+  const { t } = useTranslation();
+
   const handleIconClick = () => {
     if (note.url) {
       chrome.runtime.sendMessage({ type: MessageType.OPEN_URL, url: note.url });
@@ -82,7 +85,7 @@ export const NoteHeader: React.FC<NoteHeaderProps> = ({
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
-      <Tooltip title={`Visit ${note.url || '#'}`}>
+      <Tooltip title={t('tooltip_visit_url', note.url || '#')}>
         <IconButton onClick={handleIconClick} size="small" sx={{ mr: 1 }}>
           <Avatar
             src={note.icon || undefined}
@@ -109,22 +112,22 @@ export const NoteHeader: React.FC<NoteHeaderProps> = ({
         }}
       />
       <Box sx={{ display: 'flex', ml: 1 }}>
-        <Tooltip title="Copy to clipboard">
+        <Tooltip title={t('tooltip_copy')}>
           <IconButton size="small" onClick={onCopy}>
             <ContentCopyIcon fontSize="small" />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Send via email">
+        <Tooltip title={t('tooltip_email')}>
           <IconButton size="small" onClick={handleEmail}>
             <AlternateEmail fontSize="small" />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Print note">
+        <Tooltip title={t('tooltip_print')}>
           <IconButton size="small" onClick={handlePrint}>
             <PrintIcon fontSize="small" />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Delete note">
+        <Tooltip title={t('tooltip_delete')}>
           <IconButton size="small" onClick={onDelete} color="error">
             <DeleteIcon fontSize="small" />
           </IconButton>

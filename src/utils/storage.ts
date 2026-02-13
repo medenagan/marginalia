@@ -84,8 +84,6 @@ const sanitizeDom = (content: string): string => {
   return content;
 };
 
-// ... existing code ...
-
 /**
  * Creates a new note in storage.
  * @param noteData - The initial data for the note.

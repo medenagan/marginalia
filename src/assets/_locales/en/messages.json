@@ -1,0 +1,246 @@
+{
+  "appName": {
+    "message": "Marginalia",
+    "description": "The name of the extension"
+  },
+  "appDescription": {
+    "message": "Save thoughts, reminders, or context while browsing, and find them again when you return.",
+    "description": "The description of the extension"
+  },
+  "contextMenu_addNote": {
+    "message": "Add a new note: \"%s\"",
+    "description": "Context menu item to add a new note from selection"
+  },
+  "scope_page": {
+    "message": "This page",
+    "description": "Label for the page scope filter"
+  },
+  "scope_site": {
+    "message": "This site",
+    "description": "Label for the site scope filter"
+  },
+  "scope_global": {
+    "message": "Everywhere",
+    "description": "Label for the global scope filter"
+  },
+  "search_placeholder": {
+    "message": "Search...",
+    "description": "Placeholder text for the search input"
+  },
+  "button_new": {
+    "message": "New",
+    "description": "Label for the new note button"
+  },
+  "button_export": {
+    "message": "Export notes to CSV",
+    "description": "Label for the export button"
+  },
+  "no_notes": {
+    "message": "No notes found.",
+    "description": "Message displayed when the note list is empty"
+  },
+  "notes_count": {
+    "message": "$COUNT$ notes",
+    "description": "Label showing the number of notes",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "delete_dialog_title": {
+    "message": "Delete Note?",
+    "description": "Title of the delete confirmation dialog"
+  },
+  "delete_dialog_content": {
+    "message": "Are you sure you want to delete the note \"$TITLE$\"? This action cannot be undone.",
+    "description": "Content of the delete confirmation dialog",
+    "placeholders": {
+      "title": {
+        "content": "$1"
+      }
+    }
+  },
+  "button_cancel": {
+    "message": "Cancel",
+    "description": "Label for cancel button"
+  },
+  "button_delete": {
+    "message": "Delete",
+    "description": "Label for delete button"
+  },
+  "tooltip_export": {
+    "message": "Export these $COUNT$ notes to CSV",
+    "description": "Tooltip for export button",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "tooltip_visit_url": {
+    "message": "Visit $URL$",
+    "description": "Tooltip for visiting the note's URL",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "tooltip_delete": {
+    "message": "Delete",
+    "description": "Tooltip for delete button"
+  },
+  "status_saved": {
+    "message": "Saved locally",
+    "description": "Status message indicating note is saved"
+  },
+  "tooltip_last_modified": {
+    "message": "Last modified: $DATE$",
+    "description": "Tooltip showing last modification date",
+    "placeholders": {
+      "date": {
+        "content": "$1"
+      }
+    }
+  },
+  "tooltip_copy": {
+    "message": "Copy to clipboard",
+    "description": "Tooltip for copy button"
+  },
+  "tooltip_email": {
+    "message": "Send via email",
+    "description": "Tooltip for email button"
+  },
+  "tooltip_print": {
+    "message": "Print note",
+    "description": "Tooltip for print button"
+  },
+  "tooltip_scope_page": {
+    "message": "Show notes for this specific page",
+    "description": "Tooltip for page scope tab"
+  },
+  "tooltip_scope_site": {
+    "message": "Show notes for $DOMAIN$",
+    "description": "Tooltip for site scope tab",
+    "placeholders": {
+      "domain": {
+        "content": "$1"
+      }
+    }
+  },
+  "tooltip_scope_site_fallback": {
+    "message": "Show notes for this domain",
+    "description": "Tooltip for site scope tab when domain is unknown"
+  },
+  "tooltip_scope_global": {
+    "message": "Show all notes from everywhere",
+    "description": "Tooltip for global scope tab"
+  },
+  "template_title_today": {
+    "message": "Today's note at $TIME$",
+    "description": "Template for today's note title",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "template_title_yesterday": {
+    "message": "Yesterday Note",
+    "description": "Template for yesterday's note title"
+  },
+  "template_title_last_week": {
+    "message": "$DAYNAME$ Note",
+    "description": "Template for note title from last week",
+    "placeholders": {
+      "dayname": {
+        "content": "$1"
+      }
+    }
+  },
+  "template_title_older": {
+    "message": "Note $MONTH$ $DAY$",
+    "description": "Template for older note title",
+    "placeholders": {
+      "month": {
+        "content": "$1"
+      },
+      "day": {
+        "content": "$2"
+      }
+    }
+  },
+  "template_title_older_year": {
+    "message": "Note $MONTH$ $DAY$ $YEAR$",
+    "description": "Template for older note title with year",
+    "placeholders": {
+      "month": {
+        "content": "$1"
+      },
+      "day": {
+        "content": "$2"
+      },
+      "year": {
+        "content": "$3"
+      }
+    }
+  },
+  "weekday_sunday": { "message": "Sunday", "description": "Day of the week: Sunday" },
+  "weekday_monday": { "message": "Monday", "description": "Day of the week: Monday" },
+  "weekday_tuesday": { "message": "Tuesday", "description": "Day of the week: Tuesday" },
+  "weekday_wednesday": { "message": "Wednesday", "description": "Day of the week: Wednesday" },
+  "weekday_thursday": { "message": "Thursday", "description": "Day of the week: Thursday" },
+  "weekday_friday": { "message": "Friday", "description": "Day of the week: Friday" },
+  "weekday_saturday": { "message": "Saturday", "description": "Day of the week: Saturday" },
+  "month_jan": { "message": "Jan", "description": "Month abbreviation: January" },
+  "month_feb": { "message": "Feb", "description": "Month abbreviation: February" },
+  "month_mar": { "message": "Mar", "description": "Month abbreviation: March" },
+  "month_apr": { "message": "Apr", "description": "Month abbreviation: April" },
+  "month_may": { "message": "May", "description": "Month abbreviation: May" },
+  "month_jun": { "message": "Jun", "description": "Month abbreviation: June" },
+  "month_jul": { "message": "Jul", "description": "Month abbreviation: July" },
+  "month_aug": { "message": "Aug", "description": "Month abbreviation: August" },
+  "month_sep": { "message": "Sep", "description": "Month abbreviation: September" },
+  "month_oct": { "message": "Oct", "description": "Month abbreviation: October" },
+  "month_nov": { "message": "Nov", "description": "Month abbreviation: November" },
+  "month_dec": { "message": "Dec", "description": "Month abbreviation: December" },
+  "export_header_title": { "message": "Title", "description": "CSV Export Header: Title" },
+  "export_header_content": { "message": "Content", "description": "CSV Export Header: Content" },
+  "export_header_url": { "message": "URL", "description": "CSV Export Header: URL" },
+  "export_header_created_at": {
+    "message": "Created At",
+    "description": "CSV Export Header: Creation Date"
+  },
+  "export_header_updated_at": {
+    "message": "Updated At",
+    "description": "CSV Export Header: Last Update Date"
+  },
+  "time_just_now": { "message": "Just now", "description": "Relative time: just now" },
+  "time_minute_ago": { "message": "1 minute ago", "description": "Relative time: 1 minute ago" },
+  "time_minutes_ago": {
+    "message": "$COUNT$ minutes ago",
+    "description": "Relative time: multiple minutes ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_hour_ago": { "message": "1 hour ago", "description": "Relative time: 1 hour ago" },
+  "time_hours_ago": {
+    "message": "$COUNT$ hours ago",
+    "description": "Relative time: multiple hours ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "time_day_ago": { "message": "1 day ago", "description": "Relative time: 1 day ago" },
+  "time_days_ago": {
+    "message": "$COUNT$ days ago",
+    "description": "Relative time: multiple days ago",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "select_note_to_view": {
+    "message": "Select a note to view",
+    "description": "Message displayed when no note is selected"
+  },
+  "label_scope": {
+    "message": "SCOPE:",
+    "description": "Label for the current scope indicator"
+  }
+}

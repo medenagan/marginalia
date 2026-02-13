@@ -7,6 +7,7 @@ import DnsIcon from '@mui/icons-material/Dns';
 import PublicIcon from '@mui/icons-material/Public';
 import { Scope } from '../../../types/note';
 import { useActiveTabContext } from '../../hooks/useActiveTab';
+import { useTranslation } from '../../hooks/useTranslation';
 import { TooltipTab } from './TooltipTab';
 
 interface NotesScopeTabsProps {
@@ -19,6 +20,7 @@ export const NotesScopeTabs: React.FC<NotesScopeTabsProps> = ({
   onScopeChange,
 }) => {
   const { activeTab } = useActiveTabContext();
+  const { t } = useTranslation();
   return (
     <Paper square elevation={1}>
       <Tabs
@@ -31,24 +33,24 @@ export const NotesScopeTabs: React.FC<NotesScopeTabsProps> = ({
         sx={{ borderBottom: 1, borderColor: 'divider' }}
       >
         <TooltipTab
-          tooltip="Show notes for this specific page"
+          tooltip={t('tooltip_scope_page')}
           icon={<DescriptionIcon />}
           iconPosition="start"
-          label="This page"
+          label={t('scope_page')}
           value={Scope.Page}
         />
         <TooltipTab
-          tooltip={`Show notes for ${activeTab?.url ? new URL(activeTab.url).hostname : 'this domain'}`}
+          tooltip={activeTab?.url ? t('tooltip_scope_site', new URL(activeTab.url).hostname) : t('tooltip_scope_site_fallback')}
           icon={<DnsIcon />}
           iconPosition="start"
-          label="This site"
+          label={t('scope_site')}
           value={Scope.Domain}
         />
         <TooltipTab
-          tooltip="Show all notes from everywhere"
+          tooltip={t('tooltip_scope_global')}
           icon={<PublicIcon />}
           iconPosition="start"
-          label="Everywhere"
+          label={t('scope_global')}
           value={Scope.Global}
         />
       </Tabs>

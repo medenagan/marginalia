@@ -8,6 +8,7 @@ import { NoteHeader } from './NoteHeader';
 import { RichTextToolbar } from './RichTextToolbar';
 import { getRelativeTime } from '../../../utils/time';
 import { Note } from '../../../types/note';
+import { useTranslation } from '../../hooks/useTranslation';
 
 interface NoteEditorProps {
   note: Note;
@@ -24,6 +25,7 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
   onUpdate,
   onDelete,
 }) => {
+  const { t } = useTranslation();
   const contentRef = useRef<HTMLDivElement>(null);
   const [previousNoteId, setPreviousNoteId] = useState<string | null>(null);
 
@@ -112,8 +114,8 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
         }}
       >
         <Typography variant="caption" color="text.secondary">
-          Saved locally •{' '}
-          <Tooltip title={`Last modified: ${new Date(note.updatedAt).toLocaleString('locale', { dateStyle: 'medium', timeStyle: 'short' })}`}>
+          {t('status_saved')} •{' '}
+          <Tooltip title={t('tooltip_last_modified', new Date(note.updatedAt).toLocaleString())}>
             <span>{getRelativeTime(note.updatedAt)}</span>
           </Tooltip>
         </Typography>

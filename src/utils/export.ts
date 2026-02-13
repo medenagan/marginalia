@@ -59,7 +59,13 @@ const escapeCsvCell = (cell: string): string => {
  * @returns A Blob containing the CSV data.
  */
 const generateCsvBlob = (notes: Note[]): Blob => {
-  const HEADERS = ['Title', 'Content', 'URL', 'Created At', 'Updated At'];
+  const HEADERS = [
+    chrome.i18n.getMessage('export_header_title'),
+    chrome.i18n.getMessage('export_header_content'),
+    chrome.i18n.getMessage('export_header_url'),
+    chrome.i18n.getMessage('export_header_created_at'),
+    chrome.i18n.getMessage('export_header_updated_at'),
+  ];
   // Pre-allocate array for performance: +1 for header line
   const lines = new Array(notes.length + 1);
 

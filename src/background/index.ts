@@ -23,7 +23,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
   chrome.contextMenus.create({
     id: CONTEXT_MENU_ID,
-    title: 'Add a new note: "%s"',
+    title: chrome.i18n.getMessage('contextMenu_addNote'),
     contexts: ['selection'],
   });
 

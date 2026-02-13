@@ -10,6 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ClearIcon from '@mui/icons-material/Clear';
 import { styled, alpha } from '@mui/material/styles';
+import { useTranslation } from '../../hooks/useTranslation';
 
 // Styled Components for Search
 const Search = styled('div')(({ theme }) => ({
@@ -62,6 +63,8 @@ export const NotesHeader: React.FC<NotesHeaderProps> = ({
   onClearSearch,
   onNewNote,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <AppBar position="static" color="primary" elevation={0}>
       <Toolbar variant="dense">
@@ -69,7 +72,7 @@ export const NotesHeader: React.FC<NotesHeaderProps> = ({
           <DescriptionIcon fontSize="small" />
         </IconButton>
         <Typography variant="h6" color="inherit" component="div" sx={{ display: { xs: 'none', sm: 'block' }, mr: 1, fontSize: '1rem' }}>
-          Marginalia
+          {t('appName')}
         </Typography>
 
         <Search>
@@ -77,7 +80,7 @@ export const NotesHeader: React.FC<NotesHeaderProps> = ({
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
-            placeholder="Search..."
+            placeholder={t('search_placeholder')}
             inputProps={{ 'aria-label': 'search' }}
             value={searchQuery}
             onChange={onSearchChange}
@@ -110,7 +113,7 @@ export const NotesHeader: React.FC<NotesHeaderProps> = ({
           onClick={onNewNote}
           sx={{ borderColor: 'rgba(255,255,255,0.5)', whiteSpace: 'nowrap', minWidth: 'auto' }}
         >
-          New
+          {t('button_new')}
         </Button>
       </Toolbar>
     </AppBar>

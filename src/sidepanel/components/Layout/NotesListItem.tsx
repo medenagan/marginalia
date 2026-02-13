@@ -13,6 +13,7 @@ import { Note, NoteIdentifier } from '../../../types/note';
 import { MessageType } from '../../../types/messages';
 import { getRelativeTime } from '../../../utils/time';
 import { getNoteDisplayTitle } from '../../../utils/title';
+import { useTranslation } from '../../hooks/useTranslation';
 
 interface NotesListItemProps {
   id: NoteIdentifier;
@@ -35,6 +36,8 @@ export const NotesListItem: React.FC<NotesListItemProps> = React.memo(({
   onSelect,
   onDelete,
 }) => {
+  const { t } = useTranslation();
+
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete(id);
@@ -61,7 +64,7 @@ export const NotesListItem: React.FC<NotesListItemProps> = React.memo(({
       }}
     >
       <ListItemAvatar>
-        <Tooltip title={`Visit ${url || '#'}`}>
+        <Tooltip title={t('tooltip_visit_url', url || '#')}>
           <IconButton onClick={handleIconClick} size="small" sx={{ mr: 1 }}>
             <Avatar
               src={icon || undefined}
@@ -91,7 +94,7 @@ export const NotesListItem: React.FC<NotesListItemProps> = React.memo(({
         }}
         sx={{ width: '100%', m: 0 }}
       />
-      <Tooltip title="Delete">
+      <Tooltip title={t('tooltip_delete')}>
         <IconButton
           size="small"
           onClick={handleDelete}

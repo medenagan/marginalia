@@ -7,22 +7,25 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import WarningIcon from '@mui/icons-material/Warning';
+import { useTranslation } from '../../hooks/useTranslation';
 
 interface DeleteConfirmDialogProps {
   open: boolean;
   onClose: () => void;
   onConfirm: () => void;
-  title?: string;
-  content?: string;
+  noteTitle: string;
 }
 
 export const DeleteConfirmDialog: React.FC<DeleteConfirmDialogProps> = ({
   open,
   onClose,
   onConfirm,
-  title = 'Delete Note?',
-  content = 'Are you sure you want to delete this note? This action cannot be undone.',
+  noteTitle,
 }) => {
+  const { t } = useTranslation();
+
+  const dialogTitle = t('delete_dialog_title');
+  const dialogContent = t('delete_dialog_content', [noteTitle]);
   return (
     <Dialog
       open={open}
@@ -33,20 +36,20 @@ export const DeleteConfirmDialog: React.FC<DeleteConfirmDialogProps> = ({
       <DialogTitle id="alert-dialog-title">
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <WarningIcon color="warning" />
-          {title}
+          {dialogTitle}
         </Box>
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {content}
+          {dialogContent}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">
-          Cancel
+          {t('button_cancel')}
         </Button>
         <Button onClick={onConfirm} color="error" autoFocus>
-          Delete
+           {t('button_delete')}
         </Button>
       </DialogActions>
     </Dialog>
