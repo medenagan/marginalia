@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { mountApp } from '../../utils/dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -13,26 +14,7 @@ import ScreenExample from '../../assets/sceenshots/screen-example.png';
 
 import { useTranslation } from '../../sidepanel/hooks/useTranslation';
 
-/**
- * Localizes the HTML page by finding all elements with 'data-i18n' attribute
- * and replacing their content with the localized string.
- */
-const localizeHtmlPage = (): void => {
-  const elements = document.querySelectorAll('[data-i18n]');
 
-  elements.forEach((element) => {
-    const key = element.getAttribute('data-i18n');
-    if (key) {
-      const message = chrome.i18n.getMessage(key);
-      if (message) {
-        element.textContent = message;
-      }
-    }
-  });
-};
-
-// Localize the HTML elements (like <title>) when the script loads
-localizeHtmlPage();
 
 const theme = createTheme({
   palette: {
@@ -116,13 +98,11 @@ const Welcome = () => {
   );
 };
 
-const rootElement = document.getElementById('root');
-if (rootElement) {
-  const root = createRoot(rootElement);
-  root.render(
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Welcome />
-    </ThemeProvider>
-  );
-}
+// Mount the application
+mountApp(
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Welcome />
+  </ThemeProvider>,
+  'welcome_title'
+);

@@ -11,6 +11,11 @@ $padding-base: 16px;
 $ready-accent: #f1c40f;
 $ready-bg: #fffbf2;
 
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: $bg-color;
